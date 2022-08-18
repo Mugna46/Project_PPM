@@ -18,10 +18,10 @@ from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
 CORS(app)
-db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_apppsw@localhost/pose_app'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
 
