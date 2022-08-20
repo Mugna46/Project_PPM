@@ -9,7 +9,7 @@ from flask import request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin, current_user
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
@@ -110,7 +110,7 @@ def login():
 
 @app.route("/", methods=["GET"])
 def root():
-    return jsonify("Hello World from Flask!")
+    return jsonify("Funziona everything")
 
 
 @app.route("/api/v1/signup", methods=["POST"])

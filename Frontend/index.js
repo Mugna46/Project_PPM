@@ -15,14 +15,14 @@ $(() => {
     const response = await fetch(`${Config.BASE_URL}login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json" ,
       },
       body: JSON.stringify(data),
     });
     const jsonResponse = await response.json();
     if (response.ok) {
       localStorage.setItem("ACCESS_TOKEN", jsonResponse.access_token);
-      location.href = "start.html";
+      location.href = "game.html";
     }
     return false;
   });
