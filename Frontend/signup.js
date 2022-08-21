@@ -13,7 +13,7 @@ $(() => {
     );
 
     const response = await fetch(`${Config.BASE_URL}signup`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
       },

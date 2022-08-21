@@ -1,3 +1,4 @@
+from audioop import cross
 import cv2
 import numpy as np
 from datetime import timedelta
@@ -8,7 +9,7 @@ from flask import request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin, current_user
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
@@ -24,6 +25,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_apppsw@localhost/
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
+app.config['CORS_METHODS'] = ["*"]
+app.config['CORS_ALLOW_HEADERS'] = ['origin', 'X-Requested-With', 'Content-Type', 'Accept']
+app.config['CORS_ALLOW_ALL_ORIGINS'] = True
 
 jwt = JWTManager(app)
 db = SQLAlchemy(app)
@@ -106,7 +110,7 @@ def login():
 
 @app.route("/", methods=["GET"])
 def root():
-    return jsonify("Hello World from Flask!")
+    return jsonify("Funziona everything")
 
 
 @app.route("/api/v1/signup", methods=["POST"])
@@ -187,6 +191,8 @@ def post_video():
 def get_video(id):
     video = Video.query.get(int(id))
     return jsonify(video.as_dict())
+
+db.create_all()
 
 if __name__== "__main__":
     app.run()
