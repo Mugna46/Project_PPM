@@ -1,3 +1,2 @@
 FROM httpd:2.4
-EXPOSE 80
-COPY ./Index.html /
+COPY ../public-html/ /usr/local/apache2/htdocs/
