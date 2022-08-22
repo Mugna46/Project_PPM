@@ -1,40 +1,10 @@
-version: '3.7'
+version: '3.4'
 
 services:
-  frontend:
-    image: imageName es:webapp
+  progettoppm:
+    image: progettoppm
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
-      - "hostport:containerport"
-    networks:
-     # - networkName es: front-tier
-     # - networkName es:back-tier
-    config:
-       - httpd-config
-    secret:
-       - server-certificate
-
-  
-  backend:
-    image: imageName es: database
-    volumes:
-      -db-data:/etc/data
-    networks:
-      - 
-  
-  volumes:
-    db-data:
-    driver: flocker
-    driver-opts:
-      size: "size"
-
-  config:
-    httpd-config:
-      external: true
-
-  secrets:
-    server-certificate:
-      external: true
-  
-  networks:
-    front-tier: {}
-    back-tier: {}
+      - 5000:5000
