@@ -6,10 +6,21 @@
 			"label": "docker-build",
 			"platform": "python",
 			"dockerBuild": {
-				"tag": "progettoppm:latest",
+				"tag": "progettoppm12:latest",
 				"dockerfile": "${workspaceFolder}/Dockerfile",
 				"context": "${workspaceFolder}",
 				"pull": true
+			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: release",
+			"dependsOn": [
+				"docker-build"
+			],
+			"platform": "node",
+			"node": {
+				"package": "${workspaceFolder}/Frontend/package.json"
 			}
 		},
 		{
@@ -31,7 +42,7 @@
 					"--host",
 					"0.0.0.0",
 					"--port",
-					"5000"
+					"5050"
 				],
 				"module": "flask"
 			}
