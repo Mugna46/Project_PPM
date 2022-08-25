@@ -1,40 +1,35 @@
-version: '3.7'
+version: '3.4'
 
 services:
-  frontend:
-    image: imageName es:webapp
+  api:
+    image: backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
-      - "hostport:containerport"
+      - 5050:5050
+
+  frontend:
+    image: frontend
+    build:
+      context: Frontend
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 5000:5000
+      - 9229:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "index.js"]
+
+
+#db da rivedere tutto 
+  db:
+    image: versione mysql
     networks:
-     # - networkName es: front-tier
-     # - networkName es:back-tier
-    config:
-       - httpd-config
-    secret:
-       - server-certificate
-
-  
-  backend:
-    image: imageName es: database
-    volumes:
-      -db-data:/etc/data
-    networks:
-      - 
-  
-  volumes:
-    db-data:
-    driver: flocker
-    driver-opts:
-      size: "size"
-
-  config:
-    httpd-config:
-      external: true
-
-  secrets:
-    server-certificate:
-      external: true
-  
-  networks:
-    front-tier: {}
-    back-tier: {}
+      - api
+      environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_USER=
+      - MYSQL_PASSWORD=
+      - MYSQL_DATABASE=
+      container_name: 
