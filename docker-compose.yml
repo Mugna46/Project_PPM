@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - 5050:5050
+      - 5000:5000
 
   frontend:
     image: frontend
@@ -17,19 +17,19 @@ services:
     environment:
       NODE_ENV: development
     ports:
-      - 5000:5000
+      - 5050:5050
       - 9229:9229
     command: ["node", "--inspect=0.0.0.0:9229", "index.js"]
 
 
 #db da rivedere tutto 
-  db:
-    image: versione mysql
-    networks:
-      - api
-      environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_USER=
-      - MYSQL_PASSWORD=
-      - MYSQL_DATABASE=
-      container_name: 
+#  db:
+#    image: versione mysql
+#    networks:
+#      - api
+#      environment:
+#      - MYSQL_ROOT_PASSWORD=
+#      - MYSQL_USER=
+#      - MYSQL_PASSWORD=
+#      - MYSQL_DATABASE=
+#      container_name: 
