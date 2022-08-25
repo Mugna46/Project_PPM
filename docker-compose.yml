@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    restart: always
     ports:
       - 5000:5000
 
@@ -20,16 +21,31 @@ services:
       - 5050:5050
       - 9229:9229
     command: ["node", "--inspect=0.0.0.0:9229", "index.js"]
+    depends_on:
+      - api
 
+  db:
+    image: mysql:8.0.30
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -h 127.0.0.1 --password="$$(cat /run/secrets/db-password)" --silent']
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=example
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
+    expose:
+      - 3306
 
-#db da rivedere tutto 
-#  db:
-#    image: versione mysql
-#    networks:
-#      - api
-#      environment:
-#      - MYSQL_ROOT_PASSWORD=
-#      - MYSQL_USER=
-#      - MYSQL_PASSWORD=
-#      - MYSQL_DATABASE=
-#      container_name: 
+  volumes:
+    db_data:
+
+  secrets:
+    db-password:
+      file: db/password.txt
