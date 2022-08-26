@@ -96,7 +96,7 @@
   }
   
   .main_container {
-    overflow: hidden; width: 1234px; 
+    overflow: hidden; 
   }
 
   .cointainersecondary {
@@ -105,22 +105,25 @@
     padding-left: 48px;
     }
 
+  .bothboxes {
+    display: flex;
+  }  
+
   .firstbox{
-    min-width: 480px;
+    width: 480px;
+    min-height: 720px;
     border: 2px solid blue;
     border-right: 2px solid black;
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
     display: flex;
-    justify-content: flex-end;
   }
   
   .secondbox{
-    min-width: 480px;
-    height: 718px;
+    width: 480px;
+    min-height: 720px;
     border: 2px solid blue;
     border-left: 2px solid black;
-    padding: 10px;
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
     display: flex;
@@ -133,15 +136,17 @@
     border: 2px solid black;
     border-radius: 150px;
     margin-top: 27px;
-    margin-right: 20px;
+    margin-left: 250px;
   }
 
   .secondcounter {
     display:flex;
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    max-height: 100px;
     border: 2px solid black;
     border-radius: 150px;
+    margin-top: 27px;
+    margin-right: 20px;
   }
 
   .containerspan {
@@ -166,24 +171,31 @@
     font-family: "Open Sans";
     font-weight: bold;
     padding-top:55px; 
-    padding-right: 250px;
+    padding-left: 25px;
     
   }
 
   .player2 {
+    max-width: 80px;
     display: flex;
     font-size: 25px;
     font-family: "Open Sans";
     font-weight: bold;
+    padding-top:55px; 
+    padding-right: 250px;
   }
 
   .containerwebcam {
     position: absolute;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-    width: 988px;
+    width: 966px;
     height: 540px;
-    top: 315px;
+    top: 320px;
+  }
+
+  #video {
+    display: block;
   }
 
   .containeropera {
@@ -191,4 +203,22 @@
     width: 327px;
     height: 732px;
     border: 2px solid blue;
+    margin-left: 20px;
+    border-radius: 25px;
+    flex-direction: column;
   }
+
+  .operaitself {
+    display: flex;
+    width: 327px;
+    height: auto;
+    border: 1px solid black;
+  }
+
+  .descriptionopera {
+    display: flex;
+    width: 300px;
+    height: 250px;
+    border: 2px solid blue;
+  }
+

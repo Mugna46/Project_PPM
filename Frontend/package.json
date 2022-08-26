@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "g": "^2.0.1",
-    "npm": "^8.18.0"
+    "npm": "^8.18.0",
+    "webcam-easy": "^1.0.5"
   }
 }

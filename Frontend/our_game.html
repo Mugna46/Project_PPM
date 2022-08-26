@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strike a Pose</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <script type="module" src="our_game.js"></script>
 </head>
 <body>
     <div class="main_container">
@@ -14,20 +16,28 @@
             <span class="highspan"><h1>Strike a Pose</h1></span>
         </div>
         <div class="cointainersecondary">
+            <div class="bothboxes">
             <div class="firstbox">
                 <div class="player1">Player1</div>
                 <div class="firstcounter"></div>
             </div>
             <div class="secondbox">
-                <div class="player2">Player 2</div>
+                <div class="player2">Player2</div>
                 <div class="secondcounter"></div>
             </div>
-            <div class="containerwebcam"></div>   
-            <div class="containeropera"></div> 
+            <div class="containerwebcam">
+
+            <div class="canvas-container">
+                <video id="video" autoplay playsinline width="966" height="540"></video>
+                <canvas id="camCanvas"></canvas></div> 
+            </div> 
+            </div> 
+            <div class="containeropera">
+                <div class="operaitself"></div>
+                <div class="descriptionopera"></div>
+            </div>
         </div>
-        
-
-
     </div>
+
 </body>
 </html>

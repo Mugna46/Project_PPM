@@ -1,7 +1,7 @@
 import { createPoseCanvas, initGame } from "./scripts/utils.js";
 
-$(async () => {
-  const video = $("#video").get(0);
+(async () => {
+  const video = document.getElementById("video");
   const webcam = new Webcam(video, "user");
   await webcam.stream();
   const camCanvas = createPoseCanvas($("#camCanvas").get(0));
