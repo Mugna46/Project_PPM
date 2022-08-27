@@ -41,10 +41,6 @@
     height: 100vh;
   }
   
-  #video {
-    display: none;
-  }
-  
   .canvas-container {
     width: 100%;
     height: calc(50% - 2rem);
