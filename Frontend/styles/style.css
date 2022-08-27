@@ -188,6 +188,7 @@
     width: 966px;
     height: 540px;
     top: 320px;
+    transform: scaleX(-1);
   }
 
   #video {
