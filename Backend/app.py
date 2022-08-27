@@ -192,7 +192,6 @@ def get_video(id):
     video = Video.query.get(int(id))
     return jsonify(video.as_dict())
 
-db.create_all()
 
 if __name__== "__main__":
     app.run()
