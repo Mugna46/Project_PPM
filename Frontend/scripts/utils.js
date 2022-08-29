@@ -165,7 +165,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const initGame = async (levelId, video, camCanvas, imgCanvas) => {
+export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas) => {
   $("#main").hide();
   const level = await getLevel(levelId);
 
@@ -197,9 +197,11 @@ export const initGame = async (levelId, video, camCanvas, imgCanvas) => {
       $("#score").width(`${computedDistancePercentage}%`);
       $("#score").text(`${computedDistancePercentage}%`);
 
-      camCanvas.drawImage(video);
+      camCanvas1.drawImage(video);
+      camCanvas2.drawImage(video);
       if (Config.DEBUG) {
-        camCanvas.drawSkeleton({ keypoints: filteredVideoKPs });
+        camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs });
+        camCanvas2.drawSkeleton({ keypoints: filteredVideoKPs });
       }
       if (imgQueue.isFull() && 1 - computedDistance > Config.MATCH_LEVEL) {
         clearInterval(gameLoop);
@@ -228,7 +230,7 @@ export const initGame = async (levelId, video, camCanvas, imgCanvas) => {
           }
         }
       }
-      const base64image = camCanvas.canvas.toDataURL("image/jpeg", 0.2);
+      const base64image = camCanvas1.canvas.toDataURL("image/jpeg", 0.2);
       const response = await fetch(base64image);
       const imageBlob = await response.blob();
       imgQueue.enqueue(imageBlob);

@@ -22,7 +22,7 @@ $(() => {
     const jsonResponse = await response.json();
     if (response.ok) {
       localStorage.setItem("ACCESS_TOKEN", jsonResponse.access_token);
-      location.href = "our_game.html";
+      location.href = "start.html";
     }
     return false;
   });

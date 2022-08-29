@@ -16,7 +16,7 @@ $(async () => {
                 <p class="card-text">
                 ${levelItem.description}
                 </p>
-                <a class="btn btn-primary btn-block" href="game.html?id=${levelItem.id}">GIOCA</a>
+                <a class="btn btn-primary btn-block" href="our_game.html?id=${levelItem.id}">GIOCA</a>
             </div>
         </div>
     `);
