@@ -8,14 +8,19 @@
     <link rel="stylesheet" type="text/css" href="styles/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet">
     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
-    <script type="module" src="our_game.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
 </head>
 <body>
     <div class="main_container">
+        <video id="video" autoplay playsinline width="966" height="540"></video>
         <div class="containerspan">
             <span class="highspan"><h1>Strike a Pose</h1></span>
         </div>
@@ -24,23 +29,24 @@
             <div class="firstbox">
                 <div class="player1">Player1</div>
                 <div class="firstcounter"></div>
-            </div>
+                <div class="containerwebcam">
+                    <canvas id="camCanvas1"></canvas></div> 
+                </div>
             <div class="secondbox">
                 <div class="player2">Player2</div>
                 <div class="secondcounter"></div>
+                <div class="containerwebcam">
+                    <canvas id="camCanvas2"></canvas></div> 
+                </div>
             </div>
-            <div class="containerwebcam">
-            <div class="canvas-container">
-                <video id="video" autoplay playsinline width="966" height="540"></video>
-                <canvas id="camCanvas"></canvas></div> 
-            </div> 
-            </div> 
             <div class="containeropera">
-                <div class="operaitself"></div>
+                <div class="operaitself">
+                    <div class="canvas-container"><canvas id="imgCanvas"></canvas></div>
+                </div>
                 <div class="descriptionopera"></div>
             </div>
         </div>
-    </div>
-
+        </div>
 </body>
+<script type="module" src="game.js"></script>
 </html>
