@@ -48,8 +48,3 @@ services:
       - MYSQL_PASSWORD=pose_apppsw
     expose:
       - 3306
-<<<<<<< HEAD
-
-  
-=======
->>>>>>> b3f8dec73262a57d573c2b5d14529f93ca8314f6
