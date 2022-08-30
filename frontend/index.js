@@ -1,6 +1,7 @@
 import { Config } from "./scripts/config.js";
 
-$(() => {
+
+ $(() => {
   const form = $("#login-form");
   form.submit(async (e) => {
     e.preventDefault();
@@ -27,3 +28,4 @@ $(() => {
     return false;
   });
 });
+

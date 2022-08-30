@@ -1,4 +1,5 @@
 from audioop import cross
+from unicodedata import name
 import cv2
 import numpy as np
 from datetime import timedelta
@@ -36,6 +37,7 @@ db = SQLAlchemy(app)
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
+    name = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255), nullable=False)
     videos = db.relationship('Video', backref='user', lazy=True)
 
@@ -44,7 +46,7 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password, password)
 
     def as_dict(self):
-        return {"id": self.id, "email": self.email}
+        return {"id": self.id, "email": self.email, "name": self.name}
 
 
 class Level(db.Model):
@@ -117,8 +119,9 @@ def root():
 def signup():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    Username = request.json.get("name", None)
     hashed_password = bcrypt.generate_password_hash(password)
-    new_user = User(email=email, password=hashed_password)
+    new_user = User(email=email, name=Username, password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
     return jsonify(new_user.as_dict())
@@ -131,6 +134,13 @@ def user_me():
     return jsonify(
         current_user.as_dict()
     )
+
+#@app.route("/api/v1/user/<id>", methods=["GET"])
+#@jwt_required() 
+#def get_user(id):
+ #   users = User.query.get(int(id))
+ #   return jsonify(users.as_dict())
+
 
 
 @app.route("/api/v1/pictures/", methods=["POST"])

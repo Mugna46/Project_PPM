@@ -1,6 +1,9 @@
+import { getUserMe } from "./scripts/fetchUtils.js";
 import { createPoseCanvas, initGame } from "./scripts/utils.js";
 
-
+$(async () => {
+  const userlist = await getUserMe();
+  document.getElementById("p1").innerHTML = userlist.name;
   const video = document.getElementById("video");
   const webcam = new Webcam(video, "user");
   webcam.stream();
@@ -13,4 +16,4 @@ import { createPoseCanvas, initGame } from "./scripts/utils.js";
   const levelId = queryParams.get("id");
 
   initGame(levelId, video, camCanvas1, camCanvas2, imgCanvas);
-
+});
