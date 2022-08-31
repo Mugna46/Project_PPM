@@ -50,9 +50,9 @@ export const getVideo = (id) =>
     })
   );
 
-export const getUserMe = () =>
+export const getUserMe = (id) =>
   fetchJson(
-    fetch(`${Config.BASE_URL}user/me`, {
+    fetch(`${Config.BASE_URL}user/me/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
       },
