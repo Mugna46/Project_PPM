@@ -1,5 +1,4 @@
 import { Config } from "./scripts/config.js";
-import { getUserMe } from "./scripts/fetchUtils.js";
 
 
  $(() => {
@@ -24,7 +23,7 @@ import { getUserMe } from "./scripts/fetchUtils.js";
     const jsonResponse = await response.json();
     if (response.ok) {
       localStorage.setItem("ACCESS_TOKEN", jsonResponse.access_token);
-      location.href = "index2.html";
+      location.href = "start.html";
     }
     return false;
   });
