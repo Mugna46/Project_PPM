@@ -129,7 +129,8 @@ def signup():
 
 @app.route("/api/v1/user/me", methods=["GET"])
 @jwt_required()
-def user_me():
+def user_me(id):
+    user = User.query.get(int(id))
     # We can now access our sqlalchemy User object via `current_user`.
     return jsonify(
         current_user.as_dict()
