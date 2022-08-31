@@ -98,16 +98,26 @@ def user_lookup_callback(_jwt_header, jwt_data):
 
 @app.route("/api/v1/login", methods=["POST"])
 def login():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-
-    user = User.query.filter_by(email=email).one_or_none()
-    if not user or not user.check_password(password):
-        return jsonify("Wrong username or password"), 401
-
-    # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user)
-    return jsonify(access_token=access_token)
+    player = 0
+    if player != 1:
+        player+=1
+        email = request.json.get("email", None)
+        password = request.json.get("password", None)
+        user1 = User.query.filter_by(email=email).one_or_none()
+        if not user1 or not user1.check_password(password):
+         return jsonify("Wrong username or password"), 401
+        # Notice that we are passing in the actual sqlalchemy user object here
+        access_token1 = create_access_token(identity=user1)
+        return jsonify(access_token=access_token1)
+    else:
+        email = request.json.get("email", None)
+        password = request.json.get("password", None)
+        user2 = User.query.filter_by(email=email).one_or_none()
+        if not user2 or not user2.check_password(password):
+         return jsonify("Wrong username or password"), 401
+        # Notice that we are passing in the actual sqlalchemy user object here
+        access_token2 = create_access_token(identity=user2)
+        return jsonify(access_token=access_token2)
 
 
 @app.route("/", methods=["GET"])
@@ -127,19 +137,19 @@ def signup():
     return jsonify(new_user.as_dict())
 
 
-@app.route("/api/v1/user/me", methods=["GET"])
-@jwt_required()
-def user_me():
-    # We can now access our sqlalchemy User object via `current_user`.
-    return jsonify(
-        current_user.as_dict()
-    )
+# @app.route("/api/v1/user/me", methods=["GET"])
+# @jwt_required()
+# def user_me():
+#     # We can now access our sqlalchemy User object via `current_user`.
+#     return jsonify(
+#         current_user.as_dict()
+#     )
 
-#@app.route("/api/v1/user/<id>", methods=["GET"])
-#@jwt_required() 
-#def get_user(id):
- #   users = User.query.get(int(id))
- #   return jsonify(users.as_dict())
+@app.route("/api/v1/user/<id>", methods=["GET"])
+@jwt_required() 
+def get_user(id):
+    users = User.query.get(int(id))
+    return jsonify(users.as_dict())
 
 
 

@@ -23,9 +23,9 @@ import { getUserMe } from "./scripts/fetchUtils.js";
     });
     const jsonResponse = await response.json();
     if (response.ok) {
-      const user1 = getUserMe();
+      const user1 = getUserMe(self);
       localStorage.setItem("ACCESS_TOKEN", jsonResponse.access_token);
-      location.href = "index2.html";
+      location.href = "start.html";
     }
     return false;
   });
