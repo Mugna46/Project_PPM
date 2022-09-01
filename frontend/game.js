@@ -2,7 +2,8 @@ import { getUserMe } from "./scripts/fetchUtils.js";
 import { createPoseCanvas, initGame } from "./scripts/utils.js";
 
 $(async () => {
-  const userlist1 = await getUserMe(8);
+  var id1 = sessionStorage.getItem("id1");
+  const userlist1 = await getUserMe(id1);
   document.getElementById("p1").innerHTML = userlist1.name;
   const video = document.getElementById("video");
   const webcam = new Webcam(video, "user");

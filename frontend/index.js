@@ -1,5 +1,5 @@
 import { Config } from "./scripts/config.js";
-
+import { getUserMe } from "./scripts/fetchUtils.js";
 
  $(() => {
   const form = $("#login-form");
@@ -21,8 +21,12 @@ import { Config } from "./scripts/config.js";
       body: JSON.stringify(data),
     });
     const jsonResponse = await response.json();
-    if (response.ok) {
+    if (response.ok) { 
       localStorage.setItem("ACCESS_TOKEN", jsonResponse.access_token);
+      const user = getUserMe();
+      const v = await user;
+      var id= v.id;
+      sessionStorage.setItem("id1", id);
       location.href = "start.html";
     }
     return false;
