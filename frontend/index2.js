@@ -26,8 +26,8 @@ import { getUserMe } from "./scripts/fetchUtils.js";
       const user = getUserMe();
       const v = await user;
       var id= v.id;
-      sessionStorage.setItem("id1", id);
-      location.href = "index2.html";
+      sessionStorage.setItem("id2", id);
+      location.href = "start.html";
     }
     return false;
   });
