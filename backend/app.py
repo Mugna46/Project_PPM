@@ -1,4 +1,5 @@
 from audioop import cross
+from crypt import methods
 from unicodedata import name
 import cv2
 import numpy as np
@@ -131,17 +132,13 @@ def signup():
 @jwt_required()
 def user_me(id):
     user = User.query.get(int(id))
-    # We can now access our sqlalchemy User object via `current_user`.
-    return jsonify(
-        user.as_dict()
-    )
+    return jsonify(user.as_dict())
 
-#@app.route("/api/v1/user/<id>", methods=["GET"])
-#@jwt_required() 
-#def get_user(id):
- #   users = User.query.get(int(id))
- #   return jsonify(users.as_dict())
 
+@app.route("/api/v1/user/me", methods=["GET"])
+@jwt_required()
+def get_userme(): 
+    return jsonify(current_user.as_dict())    
 
 
 @app.route("/api/v1/pictures/", methods=["POST"])
@@ -198,11 +195,10 @@ def post_video():
     return jsonify(new_video.as_dict())
 
 
-@ app.route("/api/v1/videos/<id>", methods=["GET"])
+@app.route("/api/v1/videos/<id>", methods=["GET"])
 def get_video(id):
     video = Video.query.get(int(id))
     return jsonify(video.as_dict())
-
 
 if __name__== "__main__":
     app.run()
