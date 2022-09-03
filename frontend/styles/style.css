@@ -98,17 +98,50 @@
   }
 
   .timer-container{
+    display: flex;
     height: 100px;
     width: 918px;
+    flex-direction: column;
   }
 
   .timer{
+    display: flex;
+    flex-direction: row;
+    margin-left: 400px;
+  }
+
+  #minutes{
+    display: flex;
     text-align: center;
-    height: 100px;
+    height: 50px;
     font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 0px;
     font-family: "Open Sans";
     font-weight: bold;
+  }
 
+  #seconds{
+    display: flex;
+    text-align: center;
+    height: 50px;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+  }
+
+  #start-button{
+    text-align: center;
+    height: 50px;
+    font-size: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 400px;
+    margin-right: 400px;
+    font-family: "Open Sans";
+    font-weight: bold;
   }
 
   .round-container{
