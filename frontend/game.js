@@ -12,7 +12,6 @@ $(async () => {
   const webcam = new Webcam(video, "user");
   webcam.stream();
   const camCanvas1 = createPoseCanvas($("#camCanvas1").get(0));
-  const camCanvas2 = createPoseCanvas($("#camCanvas2").get(0));
   const imgCanvas = createPoseCanvas($("#imgCanvas").get(0));
 
   
@@ -21,7 +20,7 @@ $(async () => {
 
   const levelId = queryParams.get("id");
 
-  initGame(levelId, video, camCanvas1, camCanvas2, imgCanvas);
+  initGame(levelId, video, camCanvas1, imgCanvas);
 
   //Codice per il timer
   var minutes = 5;

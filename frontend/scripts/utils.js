@@ -165,10 +165,10 @@ const queueGenerator = (size) => {
   };
 };
 
-export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas) => {
+export const initGame = async (levelId, video, camCanvas1, imgCanvas) => {
   $("#main").hide();
   const level = await getLevel(levelId);
-  const w1 = document.getElementById("video");
+
   
   let round = 0;
   const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {
@@ -198,11 +198,14 @@ export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas
       $("#score").width(`${computedDistancePercentage}%`);
       $("#score").text(`${computedDistancePercentage}%`);
 
+      video.width=video.width/2;
+      video.height=video.height/2;
+
       camCanvas1.drawImage(video);
-      camCanvas2.drawImage(video);
+      
       if (Config.DEBUG) {
         camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs });
-        camCanvas2.drawSkeleton({ keypoints: filteredVideoKPs });
+        
       }
       if (imgQueue.isFull() && 1 - computedDistance > Config.MATCH_LEVEL) {
         clearInterval(gameLoop);
@@ -242,4 +245,5 @@ export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas
 
   return nextRound();
 };
+
 
