@@ -168,7 +168,14 @@ const queueGenerator = (size) => {
 export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas) => {
   $("#main").hide();
   const level = await getLevel(levelId);
+  const w1 = document.getElementById("video");
+  cocoSsd.load().then(model => {
+    model.detect(w1).then(predictions =>{
+      console.log("predictions: ", predictions);
+    });
+  });
 
+  
   let round = 0;
   const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {
     modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTING,
@@ -188,7 +195,7 @@ export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas
       $("#game-loading").remove();
       $("#main").show();
       const videoPoses = await detector.estimatePoses(video);
-      const videoKPs = normalizeKPs(videoPoses, 620, 480);
+      const videoKPs = normalizeKPs(videoPoses, 480, 720);
       const filteredVideoKPs = videoKPs.filter((kp) => imageKPNames.includes(kp.name));
 
       const computedDistance = distanceFromImg(filteredVideoKPs);
@@ -241,3 +248,4 @@ export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas
 
   return nextRound();
 };
+
