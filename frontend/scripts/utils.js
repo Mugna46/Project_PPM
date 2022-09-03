@@ -45,7 +45,7 @@ export const createPoseCanvas = (canvas) => {
   const ctx = canvas.getContext("2d");
   const drawPoint = ({ x, y, r, color = "white" }) => {
     ctx.beginPath();
-    ctx.arc(x * canvas.width, y * canvas.width, r, 0, 2 * Math.PI);
+    
     ctx.fillStyle = color;
     ctx.fill();
   };
@@ -63,7 +63,13 @@ export const createPoseCanvas = (canvas) => {
     canvas,
     drawPoint,
     drawSegment,
-    drawImage: (img) => {
+    drawImage1: (img) => {
+      ctx.clearRect(0, 0, canvas.width/2, canvas.height/2);
+      ctx.save();
+      ctx.drawImage(img, 0, 0, 300, canvas.height, 0, 0, canvas.width, canvas.height);
+      ctx.restore();
+    },
+    drawImage2: (img) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.save();
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -132,7 +138,7 @@ export const createPictureLoader = async (imgCanvas) => {
     const imagePoses = await strongDetector.estimatePoses(img);
     const imageKPs = normalizeKPs(imagePoses, img.width, img.height);
     const imageKPNames = imageKPs.map((kp) => kp.name);
-    imgCanvas.drawImage(img);
+    imgCanvas.drawImage2(img);
     if (Config.DEBUG) {
       imgCanvas.drawSkeleton({ keypoints: imageKPs });
     }
@@ -165,11 +171,10 @@ const queueGenerator = (size) => {
   };
 };
 
-export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas) => {
+export const initGame = async (levelId, video, camCanvas, imgCanvas) => {
   $("#main").hide();
   const level = await getLevel(levelId);
-  const w1 = document.getElementById("video");
-  
+
   let round = 0;
   const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {
     modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTING,
@@ -198,11 +203,10 @@ export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas
       $("#score").width(`${computedDistancePercentage}%`);
       $("#score").text(`${computedDistancePercentage}%`);
 
-      camCanvas1.drawImage(video);
-      camCanvas2.drawImage(video);
+      
+      video.onload= camCanvas.drawImage1(video);
       if (Config.DEBUG) {
-        camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs });
-        camCanvas2.drawSkeleton({ keypoints: filteredVideoKPs });
+        camCanvas.drawSkeleton({ keypoints: filteredVideoKPs });
       }
       if (imgQueue.isFull() && 1 - computedDistance > Config.MATCH_LEVEL) {
         clearInterval(gameLoop);
@@ -231,7 +235,7 @@ export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas
           }
         }
       }
-      const base64image = camCanvas1.canvas.toDataURL("image/jpeg", 0.2);
+      const base64image = camCanvas.canvas.toDataURL("image/jpeg", 0.2);
       const response = await fetch(base64image);
       const imageBlob = await response.blob();
       imgQueue.enqueue(imageBlob);
