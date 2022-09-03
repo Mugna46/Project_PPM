@@ -169,12 +169,6 @@ export const initGame = async (levelId, video, camCanvas1, camCanvas2, imgCanvas
   $("#main").hide();
   const level = await getLevel(levelId);
   const w1 = document.getElementById("video");
-  cocoSsd.load().then(model => {
-    model.detect(w1).then(predictions =>{
-      console.log("predictions: ", predictions);
-    });
-  });
-
   
   let round = 0;
   const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {

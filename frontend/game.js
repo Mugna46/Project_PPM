@@ -57,6 +57,7 @@ $(async () => {
       if(minutes==0 && seconds==0){
         if(timestart ==true){
            alert("The time is over!")
+           location.href= "end.html"
         }
         timestart = false;
       }
