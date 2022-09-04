@@ -9,7 +9,7 @@ import matplotlib.patches as patches
 import cv2
 import json
 
-module = hub.load("https://tfhub.dev/google/movenet/singlepose/thunder/4")
+module = hub.load("https://tfhub.dev/google/movenet/multipose/lightning/1")
 input_size = 256
 
 

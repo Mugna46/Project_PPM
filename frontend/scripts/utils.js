@@ -169,11 +169,12 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas) => {
   $("#main").hide();
   const level = await getLevel(levelId);
 
-  
   let round = 0;
-  const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {
-    modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTING,
-  });
+
+  const detectorConfig = {
+    modelType: poseDetection.movenet.modelType.MULTIPOSE_LIGHTNING,
+  };
+  const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, detectorConfig);
   const pictureLoad = await createPictureLoader(imgCanvas);
 
   const userVideoList = [];
@@ -189,17 +190,15 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas) => {
       $("#game-loading").remove();
       $("#main").show();
       const videoPoses = await detector.estimatePoses(video);
-      const videoKPs = normalizeKPs(videoPoses, 480, 720);
-      const filteredVideoKPs = videoKPs.filter((kp) => imageKPNames.includes(kp.name));
+      //const videoKPs = normalizeKPs(videoPoses, 620, 480);
+      //const filteredVideoKPs = videoKPs.filter((kp) => imageKPNames.includes(kp.name));
 
-      const computedDistance = distanceFromImg(filteredVideoKPs);
+      const computedDistance = distanceFromImg(videoPoses);
       const computedDistancePercentage = Math.min(99, ((1 - computedDistance) / Config.MATCH_LEVEL) * 100).toFixed(0);
 
       $("#score").width(`${computedDistancePercentage}%`);
       $("#score").text(`${computedDistancePercentage}%`);
 
-      video.width=video.width/2;
-      video.height=video.height/2;
 
       camCanvas1.drawImage(video);
       
