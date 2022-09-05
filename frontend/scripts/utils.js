@@ -111,6 +111,7 @@ export const createImage = (src) =>
     img.src = src;
   });
 
+// aggiunti id per gestire dubeg e id di tutti
 export const normalizeKPs = (poses, i, width, height) =>
   (poses?.[i]?.keypoints || [])
     .filter((kp) => kp.score > 0.3)
@@ -197,7 +198,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
       const videoPoses = await detector.estimatePoses(video);
       // length 2
-      
+      // cicli for per gestire più persone all'interno del codice
       for (let i = 0; i < videoPoses.length; i++) {
         videoKPs[i] = {
           lista: normalizeKPs(videoPoses, i, 620, 480),
@@ -223,8 +224,10 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       document.getElementById("s1").innerHTML = count1;
       
       if (Config.DEBUG) {
-        camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs });
-        
+        //gestione debug per più persone
+        for(let i=0; i<filteredVideoKPs.length; i++){
+        camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs[i].lista });
+        }
       }
       for (let i = 0; i < computedDistance.length; i++) {
         if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
