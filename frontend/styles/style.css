@@ -198,6 +198,15 @@
     margin-left: 250px;
   }
 
+  #s1{
+    display: flex;
+    margin-left: 38px;
+    margin-top: 40px;
+    font-family: "Open Sans";
+    line-height: 10px;
+    font-size: 40px;
+  }
+
   .secondcounter {
     display:flex;
     min-width: 100px;
@@ -206,6 +215,15 @@
     border-radius: 150px;
     margin-top: 27px;
     margin-right: 20px;
+  }
+  
+  #s2{
+    display: flex;
+    margin-left: 38px;
+    margin-top: 40px;
+    font-family: "Open Sans";
+    line-height: 10px;
+    font-size: 40px;
   }
 
   .containerspan {

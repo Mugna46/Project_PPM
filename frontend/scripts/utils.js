@@ -176,8 +176,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   let count2 = 0;
   const pictures_Array = new Array(); //Array delle immagini
   
-  
-  for(let i=0;i<3;i++){
+  for(let i=0;i<2;i++){
     pictures_Array.push(i);
   }
   
@@ -252,8 +251,6 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       for (let i = 0; i < computedDistance.length; i++) {
         if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
           clearInterval(gameLoop);
-
-          
           // distinzione dei due giocatori,
           // distinzione giocatore1
           if (count_match === 0){
