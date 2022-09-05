@@ -130,7 +130,7 @@ export const createPictureLoader = async (imgCanvas) => {
     const picture = await getPicture(id);
     const img = await createImage(`${Config.SERVER_URL}${picture.path}`);
     const imagePoses = await strongDetector.estimatePoses(img);
-    const imageKPs = normalizeKPs(imagePoses, img.width, img.height);
+    const imageKPs = normalizeKPs(imagePoses, 0, img.width, img.height);
     const imageKPNames = imageKPs.map((kp) => kp.name);
     imgCanvas.drawImage(img);
     if (Config.DEBUG) {
@@ -189,6 +189,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
     const videoKPs = [];
     const filteredVideoKPs = [];
+    const computedDistance = [];
 
     const gameLoop = setInterval(async () => {
       $("#game-loading").remove();
@@ -206,9 +207,12 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
           lista: videoKPs[i].lista.filter((kp) => imageKPNames.includes(kp.name)),
           id: videoKPs[i].id
         }
+        computedDistance[i] = {
+          score: distanceFromImg(filteredVideoKPs[i].lista),
+          id: filteredVideoKPs[i].id
+        }
       }
 
-      const computedDistance = distanceFromImg(filteredVideoKPs);
       const computedDistancePercentage = Math.min(99, ((1 - computedDistance) / Config.MATCH_LEVEL) * 100).toFixed(0);
 
       $("#score").width(`${computedDistancePercentage}%`);
@@ -222,48 +226,52 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
         camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs });
         
       }
-      if (imgQueue.isFull() && 1 - computedDistance > Config.MATCH_LEVEL) {
-        clearInterval(gameLoop);
-        // distinzione dei due giocatori, giocatore1
-        if (count_match === 0){
-           id1 = videoPoses[0].id;
-           count_match++;
-           round--;
-        }
-        // distinzione giocatore 2
-        if (count_match === 1){
-          round--;
-          for(let i=0; i<videoPoses.length; i++){
-            if(videoPoses[i].id != id1){
-              id2 = videoPoses[i].id;
-            }
+      for (let i = 0; i < computedDistance.length; i++) {
+        if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
+          clearInterval(gameLoop);
+          /*
+          // distinzione dei due giocatori, giocatore1
+          if (count_match === 0){
+             id1 = videoPoses[0].id;
+             count_match++;
+             round--;
           }
-       }
-        round++;
-        count1++;
-        document.getElementById("s1").innerHTML = count1;
-        imgQueue.clear();
-        if (round < level.picture_ids.length) {
-          await nextRound();
-        } else {
-          const formData = new FormData();
-          level.picture_ids.forEach((pictureId) => {
-            formData.append("picture_ids[]", pictureId);
-          });
-          userVideoList.forEach(({ id, frameList }) => {
-            frameList.forEach((frame, j) => {
-              formData.append(`frames_${id}[]`, frame, `frame_${id}_${j}.jpg`);
+          // distinzione giocatore 2
+          if (count_match === 1){
+            round--;
+            for(let i=0; i<videoPoses.length; i++){
+              if(videoPoses[i].id != id1){
+                id2 = videoPoses[i].id;
+              }
+            }
+         }*/
+          round++;
+          count1++;
+          document.getElementById("s1").innerHTML = count1;
+          imgQueue.clear();
+          if (round < level.picture_ids.length) {
+            await nextRound();
+          } else {
+            const formData = new FormData();
+            level.picture_ids.forEach((pictureId) => {
+              formData.append("picture_ids[]", pictureId);
             });
-          });
-          try {
-            const video = await postVideo(formData);
-            location.href = `end.html?id=${video.id}`;
-          } catch (e) {
-            console.error(e);
-            location.href = `end.html`;
+            userVideoList.forEach(({ id, frameList }) => {
+              frameList.forEach((frame, j) => {
+                formData.append(`frames_${id}[]`, frame, `frame_${id}_${j}.jpg`);
+              });
+            });
+            try {
+              const video = await postVideo(formData);
+              location.href = `end.html?id=${video.id}`;
+            } catch (e) {
+              console.error(e);
+              location.href = `end.html`;
+            }
           }
         }
       }
+
       const base64image = camCanvas1.canvas.toDataURL("image/jpeg", 0.2);
       const response = await fetch(base64image);
       const imageBlob = await response.blob();
