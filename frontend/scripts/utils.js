@@ -111,8 +111,18 @@ export const createImage = (src) =>
     img.src = src;
   });
 
-export const normalizeKPs = (poses, width, height) =>
+export const normalizeKPsim = (poses, width, height) =>
   (poses?.[0]?.keypoints || [])
+    .filter((kp) => kp.score > 0.3)
+    .map(({ x, y, score, name }) => ({
+      x: x / width,
+      y: y / height,
+      score,
+      name,
+    }));
+
+export const normalizeKPs = (poses, width, height) =>
+  (poses?.[1]?.keypoints || [])
     .filter((kp) => kp.score > 0.3)
     .map(({ x, y, score, name }) => ({
       x: x / width,
@@ -130,7 +140,7 @@ export const createPictureLoader = async (imgCanvas) => {
     const picture = await getPicture(id);
     const img = await createImage(`${Config.SERVER_URL}${picture.path}`);
     const imagePoses = await strongDetector.estimatePoses(img);
-    const imageKPs = normalizeKPs(imagePoses, img.width, img.height);
+    const imageKPs = normalizeKPsim(imagePoses, img.width, img.height);
     const imageKPNames = imageKPs.map((kp) => kp.name);
     imgCanvas.drawImage(img);
     if (Config.DEBUG) {
@@ -165,11 +175,12 @@ const queueGenerator = (size) => {
   };
 };
 
-export const initGame = async (levelId, video, camCanvas1, imgCanvas) => {
+export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) => {
   $("#main").hide();
   const level = await getLevel(levelId);
 
   let round = 0;
+  let count1 = 0;
 
   const detectorConfig = {
     modelType: poseDetection.movenet.modelType.MULTIPOSE_LIGHTNING,
@@ -189,11 +200,21 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas) => {
     const gameLoop = setInterval(async () => {
       $("#game-loading").remove();
       $("#main").show();
-      const videoPoses = await detector.estimatePoses(video);
-      //const videoKPs = normalizeKPs(videoPoses, 620, 480);
-      //const filteredVideoKPs = videoKPs.filter((kp) => imageKPNames.includes(kp.name));
 
-      const computedDistance = distanceFromImg(videoPoses);
+      const videoPoses = await detector.estimatePoses(video);
+      // length 2
+      const videoKPs0 ={ 
+        lista: normalizeKPsim(videoPoses, 620, 480),
+        id: videoPoses[0].id
+      };
+      const videoKPs1 ={ 
+        lista: normalizeKPs0(videoPoses, 620, 480),
+        id: videoPoses[1].id
+      };
+
+      const filteredVideoKPs = videoKPs0.lista.filter((kp) => imageKPNames.includes(kp.name));
+
+      const computedDistance = distanceFromImg(filteredVideoKPs);
       const computedDistancePercentage = Math.min(99, ((1 - computedDistance) / Config.MATCH_LEVEL) * 100).toFixed(0);
 
       $("#score").width(`${computedDistancePercentage}%`);
@@ -201,6 +222,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas) => {
 
 
       camCanvas1.drawImage(video);
+      document.getElementById("s1").innerHTML = count1;
       
       if (Config.DEBUG) {
         camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs });
@@ -208,9 +230,24 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas) => {
       }
       if (imgQueue.isFull() && 1 - computedDistance > Config.MATCH_LEVEL) {
         clearInterval(gameLoop);
-        console.log("MATCH!");
+        // distinzione dei due giocatori, giocatore1
+        if (count_match === 0){
+           id1 = videoPoses[0].id;
+           count_match++;
+           round--;
+        }
+        // distinzione giocatore 2
+        if (count_match === 1){
+          round--;
+          for(let i=0; i<videoPoses.length; i++){
+            if(videoPoses[i].id != id1){
+              id2 = videoPoses[i].id;
+            }
+          }
+       }
         round++;
-        userVideoList.push({ id, frameList: imgQueue.queue });
+        count1++;
+        document.getElementById("s1").innerHTML = count1;
         imgQueue.clear();
         if (round < level.picture_ids.length) {
           await nextRound();
