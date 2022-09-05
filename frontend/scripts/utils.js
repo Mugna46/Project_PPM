@@ -171,8 +171,16 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   const level = await getLevel(levelId);
 
   let round = 0;
+  let count_match = 0; 
   let count1 = 0;
-
+  let count2 = 0;
+  const pictures_Array = new Array(); //Array delle immagini
+  
+  
+  for(let i=0;i<3;i++){
+    pictures_Array.push(i);
+  }
+  
   const detectorConfig = {
     modelType: poseDetection.movenet.modelType.MULTIPOSE_LIGHTNING,
   };
@@ -182,7 +190,17 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   const userVideoList = [];
 
   const nextRound = async () => {
-    const id = level.picture_ids[round];
+    //Scelgo numero random per dare immagine random al round successivo 
+    let i =  Math.round(Math.random()*(pictures_Array.length-1));
+    const id = level.picture_ids[pictures_Array[i]];
+    
+    if(pictures_Array.length != 1){
+      for(let j=0;j<pictures_Array.length;j++){
+        if(pictures_Array[j]== i){
+          pictures_Array.splice(j,1);
+        }
+      }
+    }
 
     const { imageKPNames, distanceFromImg } = await pictureLoad(id);
 
@@ -222,7 +240,9 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
       camCanvas1.drawImage(video);
       document.getElementById("s1").innerHTML = count1;
+      document.getElementById("s2").innerHTML = count2;
       
+
       if (Config.DEBUG) {
         //gestione debug per più persone
         for(let i=0; i<filteredVideoKPs.length; i++){
@@ -232,25 +252,33 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       for (let i = 0; i < computedDistance.length; i++) {
         if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
           clearInterval(gameLoop);
-          /*
-          // distinzione dei due giocatori, giocatore1
+
+          
+          // distinzione dei due giocatori,
+          // distinzione giocatore1
           if (count_match === 0){
-             id1 = videoPoses[0].id;
+             id1 = computedDistance[i].id;
              count_match++;
              round--;
           }
           // distinzione giocatore 2
           if (count_match === 1){
             round--;
-            for(let i=0; i<videoPoses.length; i++){
-              if(videoPoses[i].id != id1){
-                id2 = videoPoses[i].id;
+            for(let i=0; i<computedDistance.length; i++){
+              if(computedDistance[i].id != id1){
+                id2 = computedDistance[i].id;
               }
             }
-         }*/
+         }
           round++;
-          count1++;
+          if (count_match >2 && id1 == computedDistance[i].id ){
+            count1++;
+          }
+          if (count_match >2 && id2 == computedDistance[i].id ){
+            count2++;
+          }
           document.getElementById("s1").innerHTML = count1;
+          document.getElementById("s2").innerHTML = count2;
           imgQueue.clear();
           if (round < level.picture_ids.length) {
             await nextRound();
@@ -286,5 +314,4 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
   return nextRound();
 };
-
 
