@@ -277,6 +277,15 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       for (let i = 0; i < computedDistance.length; i++) {
         if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
           clearInterval(gameLoop);
+
+          //condizioni per incrementare il punteggio dei giocatori (entra neli corrispettivi if dalla terza posa)
+          if (count_match > 1 && id1 == computedDistance[i].id ){
+            count1++;
+          }
+          if (count_match > 1 && id2 == computedDistance[i].id ){
+            count2++;
+          }
+
           // distinzione dei due giocatori, prova
           if (count_match === 0){// distinzione giocatore1
              id1 = computedDistance[i].id;
@@ -285,13 +294,13 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
              //stampa round su console (per debug)
              console.log(round);
           }else if(count_match === 1){// distinzione giocatore 2
-            for(let i=0; i<computedDistance.length; i++){
+            for(let j=0; j<computedDistance.length; j++){ //CAMBIARE I CON J
               if(computedDistance[i].id != id1){
                 id2 = computedDistance[i].id;
               }
             }
             count_match++;
-            round--;
+            //round--;
              //stampa round su console (per debug)            
             console.log(round);
             console.log("round");
@@ -306,12 +315,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
           console.log(round);
           // incremento punteggi (entra nel if solo dopo le prime due pose per registrare id dei giocatori)
-          if (count_match > 1 && id1 == computedDistance[i].id ){
-            count1++;
-          }
-          if (count_match > 1 && id2 == computedDistance[i].id ){
-            count2++;
-          }
+          
           document.getElementById("s1").innerHTML = count1;
           document.getElementById("s2").innerHTML = count2;
           imgQueue.clear();
