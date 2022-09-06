@@ -2,6 +2,10 @@
     background-color: #FF5733;
     border: none;
   }
+
+  * {
+    box-sizing: border-box;
+  }
   #title {
     color:#FF5733;
     font-family: URW Chancery L, cursive;
@@ -10,9 +14,6 @@
     text-shadow: 4px 4px 6px black;
   }
   
-  .logo {
-    width: 16rem;
-  }
   
   .logo_mini {
     width: 4rem;
@@ -28,6 +29,7 @@
   }
   
   body {
+    font-family:Arial, Helvetica, sans-serif;
     margin: 0;
     width: 100vw;
     height: 100vh;
@@ -93,43 +95,28 @@
   .logo-timer-round{
     display: flex;
     height: 100px;
-    width: 1920px;
+    justify-content: space-between;
     flex-direction: row;
   }
 
+  
+
   .timer-container{
-    display: flex;
-    height: 100px;
-    width: 918px;
-    flex-direction: column;
+    padding-bottom: 25px;
   }
 
+  
   .timer{
     display: flex;
     flex-direction: row;
-    margin-left: 400px;
   }
 
-  #minutes{
+  #minutes, #seconds{
     display: flex;
-    text-align: center;
-    height: 50px;
-    font-size: 40px;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    font-family: "Open Sans";
+    font-size: 65px;
     font-weight: bold;
-  }
-
-  #seconds{
-    display: flex;
-    text-align: center;
-    height: 50px;
-    font-size: 40px;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    font-family: "Open Sans";
-    font-weight: bold;
+    letter-spacing: 3px;
+    margin-top: 20px;
   }
 
   #start-button{
@@ -140,88 +127,95 @@
     margin-bottom: 0px;
     margin-left: 400px;
     margin-right: 400px;
-    font-family: "Open Sans";
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
   }
 
-  .round-container{
-    height: 100px;
-    width: 952px;
-  }
+  
 
   .round{
     text-align: center;
     height: 100px;
-    font-size: 40px;
-    font-family: "Open Sans";
+    font-size: 50px;
     font-weight: bold;
+    padding-right: 465px;
+    margin-top: 30px;
   }
 
   .cointainersecondary {
     display: flex;
     padding-top: 20px;
     padding-left: 48px;
+    justify-content: space-between;
     }
 
   .bothboxes {
     display: flex;
     height: 732px;
+    width: 960px;
+    flex-direction: column;
   }  
 
   .firstbox{
-    width: 480px;
-    min-height: 720px;
+    flex: 50%;
+    height: 150px;
     border: 2px solid blue;
     border-right: 2px solid black;
-    border-bottom-left-radius: 25px;
+    border-bottom: 2px solid black;
     border-top-left-radius: 25px;
     display: flex;
   }
   
   .secondbox{
-    width: 480px;
-    min-height: 720px;
+    flex: 50%;
+    height: 150px;
     border: 2px solid blue;
     border-left: 2px solid black;
-    border-bottom-right-radius: 25px;
+    border-bottom: 2px solid black;
     border-top-right-radius: 25px;
     display: flex;
   }
 
+  .bothplayer{
+    display: flex;
+    width: 100%;
+  }
+
   .firstcounter {
-    display:flex;
     min-width: 100px;
     max-height: 100px;
     border: 2px solid black;
     border-radius: 150px;
-    margin-top: 27px;
+    margin-top: 23px;
     margin-left: 250px;
   }
 
+  .logo {
+    padding-left: 40px;
+  }
+
   #s1{
-    display: flex;
     margin-left: 38px;
     margin-top: 40px;
-    font-family: "Open Sans";
+    font-family:Arial, Helvetica, sans-serif;
     line-height: 10px;
     font-size: 40px;
   }
 
   .secondcounter {
-    display:flex;
+    
     min-width: 100px;
     max-height: 100px;
     border: 2px solid black;
     border-radius: 150px;
-    margin-top: 27px;
-    margin-right: 20px;
+    margin-top: 23px;
+    
   }
   
   #s2{
-    display: flex;
     margin-left: 38px;
     margin-top: 40px;
-    font-family: "Open Sans";
+    font-family:Arial, Helvetica, sans-serif;
     line-height: 10px;
     font-size: 40px;
   }
@@ -230,47 +224,39 @@
     background-color: lightgray;
     justify-content: center;
     display: flex;
-    max-height: 50px;
   }
 
   .highspan {
     text-align: center;
     color: blueviolet;
-    font-family: "Open Sans";
-    line-height: 10px;
-    font-size: 15px;
+    line-height: 1px;
+    font-size: 20px;
   }
+
 
   .player1 {
     max-width: 80px;
-    display:flex;
     font-size: 25px;
-    font-family: "Open Sans";
     font-weight: bold;
-    padding-top:55px; 
+    padding-top:35px; 
     padding-left: 25px;
     
   }
 
   .player2 {
     max-width: 80px;
-    display: flex;
     font-size: 25px;
-    font-family: "Open Sans";
     font-weight: bold;
-    padding-top:55px; 
-    padding-right: 250px;
+    padding-top:35px; 
+    padding-right: 305px;
+    padding-left: 25px;
   }
 
-  .containerwebcam {
-    position: absolute;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    width: 966px;
-    height: 540px;
-    top: 320px;
-    display: block;
-    overflow: hidden;
+  .webc {
+    border: 2px solid blue;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    height: 100%;
   }
 
   #video {
@@ -278,8 +264,11 @@
   }
 
   #camCanvas1 {
-    width: 966px;
-    height: 540px;
+    width: 100%;
+    padding-top: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    max-height: 566px;
     transform: scaleX(-1);
 
   }
@@ -305,7 +294,7 @@
   .image{
     text-align: center;
     font-size: 25px;
-    font-family: "Open Sans";
+    margin-top: 15px;
     font-weight: bold;
   }
 
@@ -325,17 +314,15 @@
     width: 410px;
     height: 380px;
     border: 2px solid blue;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 19px 19px 19px 19px;
   }
 
   .description{
-    font-size: 15px;
-    font-family: "Open Sans";
-    font-weight: bold;
+    padding-left: 10px;
+    font-size: 20px;
+    font-family:Helvetica, sans-serif;
     height: auto;
+    margin: 5px 0 5px 0;
   }
 
   .containerleaderboard{
@@ -351,8 +338,9 @@
 
   .container_title{
     text-align: center;
+    margin-top: 15px;
     font-size: 25px;
-    font-family: "Open Sans";
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
   }
 

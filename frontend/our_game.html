@@ -23,10 +23,10 @@
     <div id="1" class="main_container">
         <video id="video" autoplay playsinline width="966" height="540"></video>
         <div class="containerspan">
-            <span class="highspan"><h1>Strike a Pose</h1></span>
+            <span class="highspan"><h1 id="sap">Strike a Pose</h1></span>
         </div>
         <div class="logo-timer-round">
-            <div>
+            <div class="logo">
                 <img src="assets\logo.png" width="100px" height="100px">
             </div>
             <div class="timer-container">
@@ -34,18 +34,15 @@
                    <p id="minutes">5:</p>
                    <p id="seconds">00</p>
                 </div>
-                <button id="start-button" onclick="start()">Start</button>
+                <!--<button id="start-button" onclick="start()">Start</button>-->
             </div>
-            
             <div class="round-container">
-                <p class="round">Round 1</p>
+               <p class="round">Round 1</p>
             </div>
         </div>
         <div class="cointainersecondary">
             <div class="bothboxes">
-                <div class="containerwebcam">
-                    <canvas id="camCanvas1"></canvas>
-                </div>
+            <div class="bothplayer"> 
             <div class="firstbox">
                 <div class="player1"><p id="p1"></p></div>
                 <div class="firstcounter"><p id="s1"></p></div>
@@ -55,6 +52,10 @@
                 <div class="secondcounter">
                     <p id="s2"></p>
                 </div>
+            </div>
+            </div>
+            <div class="webc">
+                <canvas id="camCanvas1"></canvas>
             </div>
             </div>
             <div class="containeropera">
@@ -72,9 +73,8 @@
                 <p class="container_title">Classifica </p>
                 <div class="leaderboard"></div>
             </div>
-        
-        </div>
         </div>
 </body>
 <script type="module" src="game.js"></script>
 </html>
+<!--<div><canvas id="camCanvas1"></canvas></div>-->
