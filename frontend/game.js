@@ -21,47 +21,5 @@ $(async () => {
   const levelId = queryParams.get("id");
 
   initGame(levelId, video, camCanvas1, imgCanvas);
-
-  //Codice per il timer
-  var minutes = 3;
-  var seconds = 0;
-  var timestart = false;
-  //document.getElementById("start-button").onclick = function() {start()};
-  
-  function start(){
-    
-    //document.getElementById("start-button").innerHTML = "Let's go!";
-    timestart = true;
-
-    setInterval(function(){
-      if(timestart == true){
-        seconds--;
-        if(seconds==-1){
-          
-        }else if(seconds < 10){
-          document.getElementById("seconds").innerHTML = "0"+seconds ;
-        }else{
-          document.getElementById("seconds").innerHTML = seconds;
-        }
-
-        if(seconds < 0){
-          minutes--;
-          document.getElementById("minutes").innerHTML = minutes+":";
-          seconds = 59;
-          document.getElementById("seconds").innerHTML = 59;
-        }
-
-      }
-  
-      if(minutes==0 && seconds==0){
-        if(timestart ==true){
-           alert("The time is over!")
-           location.href= "end.html"
-        }
-        timestart = false;
-      }
-
-    },1000)
-  } 
 });
 

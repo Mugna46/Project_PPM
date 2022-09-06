@@ -2,49 +2,40 @@ version: '3.4'
 
 services:
   api:
+    container_name: backend
     image: backend
     build:
       context: .
-      dockerfile: ./Dockerfile
-    restart: always
+    depends_on:
+      - db  
     ports:
-      - 5000:5000
-    secrets:
-      - db-password
+      - 5001:5001
     volumes:
-      - ./backend/src:/code/src:ro
-      - ./backend/package.json:/code/package.json
-      - ./backend/package-lock.json:/code/package-lock.json
-    depends_on:
+      - ./:/src
+    links:
       - db
-
-  frontend:
-    image: frontend
-    build:
-      context: Frontend
-      dockerfile: ./Dockerfile
     environment:
-      NODE_ENV: development
-    ports:
-      - 5050:5050
-      - 9229:9229
-    command: ["node", "--inspect=0.0.0.0:9229", "index.js"]
-    depends_on:
-      - api
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 3305
+      DB_USER: pose_app
+      DB_PASSWORD: pose_apppsw
+      DB_NAME: pose_app  
 
   db:
     image: mysql:8.0.30
-    command: '--default-authentication-plugin=mysql_native_password'
+    cap_add:
+      - SYS_NICE
     restart: always
-    healthcheck:
-      test: ['CMD-SHELL', 'mysqladmin ping -h 127.0.0.1 --password="$$(cat /run/secrets/db-password)" --silent']
-      interval: 3s
-      retries: 5
-      start_period: 30s
     environment:
-      - MYSQL_ROOT_PASSWORD=pose_apppsw
       - MYSQL_DATABASE=pose_app
-      - MYSQL_USER=pose_app
       - MYSQL_PASSWORD=pose_apppsw
-    expose:
-      - 3306
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - '3305:3305'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  
+volumes:
+  db:
+    driver: local      

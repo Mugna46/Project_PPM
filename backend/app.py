@@ -165,37 +165,12 @@ def get_levels():
     return jsonify([level.as_dict() for level in levels])
 
 
-@app.route("/api/v1/videos", methods=["POST"])
-@jwt_required()
-def post_video():
-    video_path = f'static/videos/{uuid.uuid4()}.mp4'
-    out = cv2.VideoWriter(video_path,
-                          cv2.VideoWriter_fourcc(*'mp4v'), 14.0, (1024, 2048))
-
-    for picture_id in request.form.getlist('picture_ids[]'):
-        picture = Picture.query.get(int(picture_id))
-        picture_image = cv2.imread(picture.path)
-        for file in request.files.getlist(f'frames_{picture_id}[]'):
-            img = cv2.imdecode(np.fromstring(
-                file.read(), np.uint8), cv2.IMREAD_COLOR)
-            resized_picure_image = cv2.resize(picture_image, (1024, 1024))
-            resized_image = cv2.resize(img, (1024, 1024))
-            combined_images = np.concatenate(
-                (resized_picure_image, resized_image), axis=0)
-            flipped_combined_images = cv2.flip(combined_images, 1)
-            out.write(flipped_combined_images)
-
-    out.release()
-    new_video = Video(path=video_path, user_id=current_user.id)
-    db.session.add(new_video)
-    db.session.commit()
-    return jsonify(new_video.as_dict())
-
-
 @app.route("/api/v1/videos/<id>", methods=["GET"])
 def get_video(id):
     video = Video.query.get(int(id))
     return jsonify(video.as_dict())
 
 if __name__== "__main__":
+    db.create_all()
     app.run()
+
