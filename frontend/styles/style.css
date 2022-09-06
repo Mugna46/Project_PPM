@@ -98,9 +98,7 @@
     justify-content: space-between;
     flex-direction: row;
   }
-
   
-
   .timer-container{
     padding-bottom: 25px;
   }
@@ -131,8 +129,6 @@
     font-weight: bold;
   }
 
-  
-
   .round{
     text-align: center;
     height: 100px;
@@ -147,17 +143,20 @@
     padding-top: 20px;
     padding-left: 48px;
     justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
     }
 
   .bothboxes {
     display: flex;
     height: 732px;
-    width: 960px;
     flex-direction: column;
+    width: 50%;
   }  
 
   .firstbox{
-    flex: 50%;
+    flex:50%;
+    width: 50%;
     height: 150px;
     border: 2px solid blue;
     border-right: 2px solid black;
@@ -167,7 +166,8 @@
   }
   
   .secondbox{
-    flex: 50%;
+    flex:50%;
+    width:50%;
     height: 150px;
     border: 2px solid blue;
     border-left: 2px solid black;
@@ -182,12 +182,12 @@
   }
 
   .firstcounter {
+    width: auto;
     min-width: 100px;
     max-height: 100px;
     border: 2px solid black;
     border-radius: 150px;
     margin-top: 23px;
-    margin-left: 250px;
   }
 
   .logo {
@@ -203,13 +203,11 @@
   }
 
   .secondcounter {
-    
     min-width: 100px;
     max-height: 100px;
     border: 2px solid black;
     border-radius: 150px;
     margin-top: 23px;
-    
   }
   
   #s2{
@@ -235,27 +233,27 @@
 
 
   .player1 {
-    max-width: 80px;
     font-size: 25px;
     font-weight: bold;
     padding-top:35px; 
     padding-left: 25px;
+    width: 70%;
     
   }
 
   .player2 {
-    max-width: 80px;
     font-size: 25px;
     font-weight: bold;
     padding-top:35px; 
-    padding-right: 305px;
     padding-left: 25px;
+    width: 70%;
   }
 
   .webc {
     border: 2px solid blue;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
+    width: 100%;
     height: 100%;
   }
 
@@ -283,7 +281,7 @@
 
   .containeropera {
     display: flex;
-    width: 450px;
+    width: 25%;
     height: 732px;
     border: 2px solid blue;
     margin-left: 20px;
@@ -300,7 +298,7 @@
 
   .operaitself {
     display: flex;
-    width: 450px;
+    width: auto;
     height: auto;
   }
 
@@ -311,8 +309,8 @@
 
   .descriptionopera {
     display: flex;
-    width: 410px;
-    height: 380px;
+    width: auto;
+    height: 400px;
     border: 2px solid blue;
     margin: 19px 19px 19px 19px;
   }
@@ -328,7 +326,7 @@
   .containerleaderboard{
     display: flex;
     border: 2px solid blue;
-    width: 320px;
+    width: 20%;
     height: 732px;
     margin-left: 20px;
     margin-right: 20px;
@@ -347,9 +345,131 @@
   .leaderboard{
     display: flex;
     border: 2px solid blue;
-    width: 280px;
+    width: auto;
     height: 712px;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
   }
+
+  /*Codice per adattamento a dispositivi di width <=1200px */
+  @media only screen and (max-width: 1200px){
+
+    .round{
+      padding-right: 20px;
+    }
+    .cointainersecondary{
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .bothboxes{
+      width: 60%;
+    }
+
+    .containeropera{
+      width: 35%;
+      margin-right: 20px;
+    }
+
+    .containerleaderboard{
+      display: flex;
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      flex-direction: column;
+    }
+
+    .container_title{
+      font-size: 20px;
+      margin-bottom: 0px;
+      margin-top: 5px;
+    }
+
+    .leaderboard{
+      margin-bottom: 7px;
+      overflow-y: auto;
+    }
+  }
+
+  /*Codice per adattamento a dispositivi di width <=500px */
+  @media only screen and (max-width: 500px){
+    .logo{
+      padding-left: 2px;
+      padding-top: 5px;
+    }
+
+    .img{
+      width: 75px;
+      height: 75px;
+    }
+
+    #minutes , #seconds{
+      font-size: 50px;
+    }
+
+    .round{
+      padding-right: 50px;
+      font-size: 30px;
+    }
+
+    .cointainersecondary{
+      flex-direction: column;
+      padding-left: 20px;
+      padding-top: 0px;
+    }
+
+    .bothboxes{
+      width: 95%;
+      height: auto;
+    }
+
+    .firstcounter{
+      min-width: 20%;
+      max-width: 50%;
+    }
+
+    #s1{
+      margin-left: 3px;
+    }
+
+    .secondcounter{
+      min-width: 20%;
+      max-width: 50%;
+    }
+
+    #s2{
+      margin-left: 3px;
+    }
+
+    .player1{
+      padding-left: 5%;
+    }
+
+    .player2{
+      padding-left: 5%;
+    }
+    
+    #p1{
+      font-size: 15px;
+    }
+
+    #p2{
+      font-size: 15px;
+    }
+
+    .containeropera{
+      width: 95%;
+      height: auto;
+      margin-top: 10px;
+      margin-left: 0px;
+    }
+
+    .containerleaderboard{
+      width: 95%;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
+    
+  

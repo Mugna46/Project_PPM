@@ -23,14 +23,14 @@ $(async () => {
   initGame(levelId, video, camCanvas1, imgCanvas);
 
   //Codice per il timer
-  var minutes = 5;
+  var minutes = 3;
   var seconds = 0;
   var timestart = false;
-  document.getElementById("start-button").onclick = function() {start()};
+  //document.getElementById("start-button").onclick = function() {start()};
   
   function start(){
     
-    document.getElementById("start-button").innerHTML = "Let's go!";
+    //document.getElementById("start-button").innerHTML = "Let's go!";
     timestart = true;
 
     setInterval(function(){
