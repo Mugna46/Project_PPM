@@ -174,6 +174,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   let count_match = 0; 
   let count1 = 0;
   let count2 = 0;
+  let i = 0;
   const pictures_Array = new Array(); //Array delle immagini
   
   //stampa su console il numero di immagini nel database locale (per debug)
@@ -192,15 +193,10 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
   const nextRound = async () => {
     //Scelgo numero random per dare immagine random al round successivo 
-    let i =  Math.round(Math.random()*(pictures_Array.length-1));
+    
     const id = level.picture_ids[pictures_Array[i]];
-    
-      for(let j=0;j<pictures_Array.length;j++){
-        if(pictures_Array[j]== i){ //problema, non vengono tolte le immagnini appena utilizzate 
-          pictures_Array.splice(j,1);
-        }
-      }
-    
+    i++;
+
     const { imageKPNames, distanceFromImg } = await pictureLoad(id);
 
     const imgQueue = queueGenerator(Config.VIDEO_SECONDS * Config.FRAME_RATE);
