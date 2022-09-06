@@ -21,5 +21,6 @@ $(async () => {
   const levelId = queryParams.get("id");
 
   initGame(levelId, video, camCanvas1, imgCanvas);
+  
 });
 
