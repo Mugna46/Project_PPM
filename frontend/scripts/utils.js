@@ -176,6 +176,8 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   let count2 = 0;
   const pictures_Array = new Array(); //Array delle immagini
   
+  //stampa su console il numero di immagini nel database locale (per debug)
+  console.log(level.picture_ids.length)
   for(let i=0;i<level.picture_ids.length;i++){
     pictures_Array.push(i);
   }
@@ -193,14 +195,12 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
     let i =  Math.round(Math.random()*(pictures_Array.length-1));
     const id = level.picture_ids[pictures_Array[i]];
     
-    
       for(let j=0;j<pictures_Array.length;j++){
-        if(pictures_Array[j]== i){
+        if(pictures_Array[j]== i){ //problema, non vengono tolte le immagnini appena utilizzate 
           pictures_Array.splice(j,1);
         }
       }
     
-
     const { imageKPNames, distanceFromImg } = await pictureLoad(id);
 
     const imgQueue = queueGenerator(Config.VIDEO_SECONDS * Config.FRAME_RATE);
@@ -236,15 +236,13 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       $("#score").width(`${computedDistancePercentage}%`);
       $("#score").text(`${computedDistancePercentage}%`);
 
-
       camCanvas1.drawImage(video);
       document.getElementById("s1").innerHTML = count1;
       // secondo counter
       document.getElementById("s2").innerHTML = count2;
       
-
       if (Config.DEBUG) {
-        //gestione debug per più persone
+        //gestione debug per più persone contemporaneamente
         for(let i=0; i<filteredVideoKPs.length; i++){
         camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs[i].lista });
         }
@@ -253,26 +251,28 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
         if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
           clearInterval(gameLoop);
           // distinzione dei due giocatori, prova
-          if (count_match === 0){ // distinzione giocatore1
+          if (count_match === 0){// distinzione giocatore1
              id1 = computedDistance[i].id;
              count_match++;
              round--;
+             //stampa round su console (per debug)
              console.log(round);
           }else if(count_match === 1){// distinzione giocatore 2
-            round--;
-            console.log(round);
-            console.log("round");
-            count_match++;
             for(let i=0; i<computedDistance.length; i++){
               if(computedDistance[i].id != id1){
                 id2 = computedDistance[i].id;
               }
             }
+            count_match++;
+            round--;
+             //stampa round su console (per debug)            
+            console.log(round);
+            console.log("round");
           }
           
           round++;
           console.log(round);
-          // incremento punteggi 
+          // incremento punteggi (entra nel if solo dopo le prime due pose per registrare id dei giocatori)
           if (count_match > 1 && id1 == computedDistance[i].id ){
             count1++;
           }
@@ -283,7 +283,8 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
           document.getElementById("s2").innerHTML = count2;
           imgQueue.clear();
           // non esce dal ciclo ma da gestire attraverso timer
-          if (round < level.picture_ids.length) {
+          // adesso dovrebbe uscire comunque da cambiare 
+          if (round < pictures_Array.length) {
             await nextRound();
           } else {
             const formData = new FormData();
