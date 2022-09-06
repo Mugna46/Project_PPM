@@ -21,6 +21,10 @@ $(async () => {
   const levelId = queryParams.get("id");
 
   initGame(levelId, video, camCanvas1, imgCanvas);
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 0fc2dbecdd8d6895bb93fc61c4229f8515e569e6
 });
 
