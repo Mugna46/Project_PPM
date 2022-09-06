@@ -205,6 +205,8 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   let i = 0;
   const pictures_Array = new Array(); //Array delle immagini
   var start_timer = true;
+
+  document.getElementById("nround").innerHTML = round;
   
   //stampa su console il numero di immagini nel database locale (per debug)
   console.log(level.picture_ids.length)
@@ -296,6 +298,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
           }
 
           round++;
+          document.getElementById("nround").innerHTML = round;
           if (start_timer == true) {
             startTimer();
             start_timer = false;
