@@ -166,6 +166,34 @@ const queueGenerator = (size) => {
   };
 };
 
+export const startTimer = async (minutes = 1, seconds = 0, bool = true) => {
+
+  setInterval(function(){
+    if (bool == true) {
+      seconds--;
+      if(seconds==-1){
+      }else if(seconds < 10){
+        document.getElementById("seconds").innerHTML = "0"+seconds;
+      }else{
+        document.getElementById("seconds").innerHTML = seconds;
+      }
+      if(seconds < 0){
+        minutes--;
+        document.getElementById("minutes").innerHTML = minutes+":";
+        seconds = 59;
+        document.getElementById("seconds").innerHTML = 59;
+      }
+    }
+    if(minutes==0 && seconds==0){
+      if(bool == true){
+         alert("The time is over!")
+         location.href= "end.html"
+      }
+      bool = false;
+    }
+  },1000)
+} 
+
 export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) => {
   $("#main").hide();
   const level = await getLevel(levelId);
@@ -174,8 +202,14 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   let count_match = 0; 
   let count1 = 0;
   let count2 = 0;
+  let i = 0;
   const pictures_Array = new Array(); //Array delle immagini
+  var start_timer = true;
+
+  document.getElementById("nround").innerHTML = round;
   
+  //stampa su console il numero di immagini nel database locale (per debug)
+  console.log(level.picture_ids.length)
   for(let i=0;i<level.picture_ids.length;i++){
     pictures_Array.push(i);
   }
@@ -190,16 +224,9 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
   const nextRound = async () => {
     //Scelgo numero random per dare immagine random al round successivo 
-    let i =  Math.round(Math.random()*(pictures_Array.length-1));
+    
     const id = level.picture_ids[pictures_Array[i]];
-    
-    
-      for(let j=0;j<pictures_Array.length;j++){
-        if(pictures_Array[j]== i){
-          pictures_Array.splice(j,1);
-        }
-      }
-    
+    i++;
 
     const { imageKPNames, distanceFromImg } = await pictureLoad(id);
 
@@ -236,15 +263,13 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       $("#score").width(`${computedDistancePercentage}%`);
       $("#score").text(`${computedDistancePercentage}%`);
 
-
       camCanvas1.drawImage(video);
       document.getElementById("s1").innerHTML = count1;
       // secondo counter
       document.getElementById("s2").innerHTML = count2;
       
-
       if (Config.DEBUG) {
-        //gestione debug per più persone
+        //gestione debug per più persone contemporaneamente
         for(let i=0; i<filteredVideoKPs.length; i++){
         camCanvas1.drawSkeleton({ keypoints: filteredVideoKPs[i].lista });
         }
@@ -252,57 +277,51 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       for (let i = 0; i < computedDistance.length; i++) {
         if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
           clearInterval(gameLoop);
-          // distinzione dei due giocatori, prova
-          if (count_match === 0){ // distinzione giocatore1
-             id1 = computedDistance[i].id;
-             count_match++;
-             round--;
-             console.log(round);
-          }else if(count_match === 1){// distinzione giocatore 2
-            round--;
-            console.log(round);
-            console.log("round");
-            count_match++;
-            for(let i=0; i<computedDistance.length; i++){
-              if(computedDistance[i].id != id1){
-                id2 = computedDistance[i].id;
-              }
-            }
-          }
-          
-          round++;
-          console.log(round);
-          // incremento punteggi 
+
+          //condizioni per incrementare il punteggio dei giocatori (entra neli corrispettivi if dalla terza posa)
           if (count_match > 1 && id1 == computedDistance[i].id ){
             count1++;
           }
           if (count_match > 1 && id2 == computedDistance[i].id ){
             count2++;
           }
+
+          // distinzione dei due giocatori, prova
+          if (count_match === 0){// distinzione giocatore1
+             id1 = computedDistance[i].id;
+             count_match++;
+             round--;
+             //stampa round su console (per debug)
+             console.log(round);
+          }else if(count_match === 1){// distinzione giocatore 2
+            for(let j=0; j<computedDistance.length; j++){ //CAMBIARE I CON J
+              if(computedDistance[i].id != id1){
+                id2 = computedDistance[i].id;
+              }
+            }
+            count_match++;
+            //round--;
+             //stampa round su console (per debug)            
+            console.log(round);
+            console.log("round");
+          }
+
+          round++;
+          document.getElementById("nround").innerHTML = round;
+          if (start_timer == true) {
+            startTimer();
+            start_timer = false;
+          }
+
+          console.log(round);
+          // incremento punteggi (entra nel if solo dopo le prime due pose per registrare id dei giocatori)
+          
           document.getElementById("s1").innerHTML = count1;
           document.getElementById("s2").innerHTML = count2;
           imgQueue.clear();
           // non esce dal ciclo ma da gestire attraverso timer
-          if (round < level.picture_ids.length) {
-            await nextRound();
-          } else {
-            const formData = new FormData();
-            level.picture_ids.forEach((pictureId) => {
-              formData.append("picture_ids[]", pictureId);
-            });
-            userVideoList.forEach(({ id, frameList }) => {
-              frameList.forEach((frame, j) => {
-                formData.append(`frames_${id}[]`, frame, `frame_${id}_${j}.jpg`);
-              });
-            });
-            try {
-              const video = await postVideo(formData);
-              location.href = `end.html?id=${video.id}`;
-            } catch (e) {
-              console.error(e);
-              location.href = `end.html`;
-            }
-          }
+          // adesso dovrebbe uscire comunque da cambiare 
+          await nextRound();
         }
       }
 
