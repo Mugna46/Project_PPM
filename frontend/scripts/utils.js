@@ -166,6 +166,34 @@ const queueGenerator = (size) => {
   };
 };
 
+export const startTimer = async (minutes = 1, seconds = 0, bool = true) => {
+
+  setInterval(function(){
+    if (bool == true) {
+      seconds--;
+      if(seconds==-1){
+      }else if(seconds < 10){
+        document.getElementById("seconds").innerHTML = "0"+seconds;
+      }else{
+        document.getElementById("seconds").innerHTML = seconds;
+      }
+      if(seconds < 0){
+        minutes--;
+        document.getElementById("minutes").innerHTML = minutes+":";
+        seconds = 59;
+        document.getElementById("seconds").innerHTML = 59;
+      }
+    }
+    if(minutes==0 && seconds==0){
+      if(bool == true){
+         alert("The time is over!")
+         location.href= "end.html"
+      }
+      bool = false;
+    }
+  },1000)
+} 
+
 export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) => {
   $("#main").hide();
   const level = await getLevel(levelId);
@@ -176,6 +204,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
   let count2 = 0;
   let i = 0;
   const pictures_Array = new Array(); //Array delle immagini
+  var start_timer = true;
   
   //stampa su console il numero di immagini nel database locale (per debug)
   console.log(level.picture_ids.length)
@@ -265,8 +294,13 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
             console.log(round);
             console.log("round");
           }
-          
+
           round++;
+          if (start_timer == true) {
+            startTimer();
+            start_timer = false;
+          }
+
           console.log(round);
           // incremento punteggi (entra nel if solo dopo le prime due pose per registrare id dei giocatori)
           if (count_match > 1 && id1 == computedDistance[i].id ){
@@ -280,26 +314,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
           imgQueue.clear();
           // non esce dal ciclo ma da gestire attraverso timer
           // adesso dovrebbe uscire comunque da cambiare 
-          if (round < pictures_Array.length) {
-            await nextRound();
-          } else {
-            const formData = new FormData();
-            level.picture_ids.forEach((pictureId) => {
-              formData.append("picture_ids[]", pictureId);
-            });
-            userVideoList.forEach(({ id, frameList }) => {
-              frameList.forEach((frame, j) => {
-                formData.append(`frames_${id}[]`, frame, `frame_${id}_${j}.jpg`);
-              });
-            });
-            try {
-              const video = await postVideo(formData);
-              location.href = `end.html?id=${video.id}`;
-            } catch (e) {
-              console.error(e);
-              location.href = `end.html`;
-            }
-          }
+          await nextRound();
         }
       }
 
