@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin, current_user
 from flask_cors import CORS, cross_origin
+import os
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
@@ -20,7 +21,8 @@ app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_apppsw@localhost/pose_app'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://flask:secret@db/pose_appdocker'
+    
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
@@ -171,6 +173,7 @@ def get_video(id):
     return jsonify(video.as_dict())
 
 if __name__== "__main__":
+    # il container backend funziona perfettamente però quando gli chiedo di creare il database da errore
     db.create_all()
-    app.run()
+    app.run(host="0.0.0.0")
 

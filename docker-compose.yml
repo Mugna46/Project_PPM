@@ -9,33 +9,37 @@ services:
     depends_on:
       - db  
     ports:
-      - 5001:5001
+      - 5000:5000
     volumes:
       - ./:/src
     links:
       - db
     environment:
-      NODE_ENV: production
       DB_HOST: db
-      DB_PORT: 3305
-      DB_USER: pose_app
+      DB_USER: flask
       DB_PASSWORD: pose_apppsw
-      DB_NAME: pose_app  
+      DB_NAME: pose_appdocker
 
   db:
     image: mysql:8.0.30
     cap_add:
       - SYS_NICE
     restart: always
-    environment:
-      - MYSQL_DATABASE=pose_app
-      - MYSQL_PASSWORD=pose_apppsw
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
     ports:
-      - '3305:3305'
+      - 3305:3305
+    environment:
+       MYSQL_DATABASE: pose_appdocker
+       MYSQL_PASSWORD: secret
+       MYSQL_USER: flask
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  
+    networks:
+      - database
+
+networks:
+  database:
+
 volumes:
   db:
     driver: local      
