@@ -21,7 +21,8 @@ app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose:pose@db/pose'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose:pose@db/pose' db docker
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_app@localhost/pose_app' # db localhost
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
@@ -38,7 +39,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True, nullable=False)
     name = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255), nullable=False)
-    videos = db.relationship('Video', backref='user', lazy=True)
+    score = db.Column(db.String(255), nullable=False)
 
     # NOTE: In a real application make sure to properly hash and salt passwords
     def check_password(self, password):
