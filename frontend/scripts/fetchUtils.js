@@ -80,3 +80,14 @@ export const getLevels = () =>
       },
     })
   );
+
+//Di questo non sono molto sicuro ma teoricamente è il codice js per prendere lo score (preso esmpio da lei)
+export const getScore = () => 
+  fetchJson(
+    fetch(`${Config.BASE_URL}user/me/${score}`, { 
+      headers:{
+        Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+      },
+      method: "GET"
+    })
+  )

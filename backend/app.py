@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from datetime import timedelta
 import uuid
-from flask import Flask
+from flask import Flask 
 from flask import jsonify
 from flask import request
 from flask_sqlalchemy import SQLAlchemy
@@ -156,7 +156,7 @@ def get_picture(id):
 @app.route("/api/v1/levels/<id>", methods=["GET"])
 def get_level(id):
     level = Level.query.get(int(id))
-    return jsonify(level.as_dict())
+    return jsonify(level.as_dict()) 
 
 
 @app.route("/api/v1/levels", methods=["GET"])
