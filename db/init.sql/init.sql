@@ -7,8 +7,8 @@
 -- Server version: 8.0.30-0ubuntu0.20.04.2
 -- PHP Version: 7.4.3
 
-CREATE DATABASE IF NOT EXISTS dev;
-USE dev
+CREATE DATABASE IF NOT EXISTS pose;
+USE pose;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;

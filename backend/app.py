@@ -21,7 +21,7 @@ app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose:pose@db:3305/pose'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose:pose@db/pose'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
@@ -173,6 +173,6 @@ def get_video(id):
 
 if __name__== "__main__":
     # il container backend funziona perfettamente però quando gli chiedo di creare il database da errore
-    db.create_all()
+    
     app.run()
 

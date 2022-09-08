@@ -1,4 +1,4 @@
-version: '3.5'
+version: '2.0'
 
 services:
   api:
@@ -20,6 +20,8 @@ services:
       DB_PORT: 3305
       DB_PASSWORD: pose
       DB_NAME: pose
+    networks:
+      - database  
 
   db:
     image: mysql:8.0.30
@@ -35,7 +37,7 @@ services:
        MYSQL_ROOT_PASSWORD: secret
     volumes:
       - db:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  
+      - ./db/init.sql/init.sql:/docker-entrypoint-initdb.d/init.sql  
     networks:
       - database
 
