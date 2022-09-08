@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.5'
 
 services:
   api:
@@ -16,9 +16,10 @@ services:
       - db
     environment:
       DB_HOST: db
-      DB_USER: flask
-      DB_PASSWORD: pose_apppsw
-      DB_NAME: pose_appdocker
+      DB_USER: pose
+      DB_PORT: 3305
+      DB_PASSWORD: pose
+      DB_NAME: pose
 
   db:
     image: mysql:8.0.30
@@ -26,11 +27,12 @@ services:
       - SYS_NICE
     restart: always
     ports:
-      - 3305:3305
+      - 3305:3306
     environment:
-       MYSQL_DATABASE: pose_appdocker
-       MYSQL_PASSWORD: secret
-       MYSQL_USER: flask
+       MYSQL_DATABASE: pose
+       MYSQL_PASSWORD: pose
+       MYSQL_USER: pose
+       MYSQL_ROOT_PASSWORD: secret
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  
