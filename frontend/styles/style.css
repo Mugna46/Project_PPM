@@ -480,5 +480,14 @@
       margin-right: 0px;
     }
   }
+
+  /*Styles for end.html*/
+
+  #final_title{
+    text-align: center;
+  }
+  .img-fluid{
+    width: 100%;
+  }
     
   

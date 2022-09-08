@@ -1,4 +1,4 @@
-import { getUser } from "./scripts/fetchUtils.js";
+import { getUser} from "./scripts/fetchUtils.js";
 import { createPoseCanvas, initGame } from "./scripts/utils.js";
 
 $(async () => {
@@ -19,6 +19,9 @@ $(async () => {
   const queryParams = new URLSearchParams(window.location.search);
 
   const levelId = queryParams.get("id");
+  
+  //Codice per gestire la classifica generale 
+
 
   initGame(levelId, video, camCanvas1, imgCanvas);
 });

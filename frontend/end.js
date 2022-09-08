@@ -1,29 +1,17 @@
 import { Config } from "./scripts/config.js";
-import { getVideo } from "./scripts/fetchUtils.js";
+import { getUser, getVideo } from "./scripts/fetchUtils.js";
 
 $(async () => {
   const queryParams = new URLSearchParams(window.location.search);
 
-  const videoId = queryParams.get("id");
-  if (!videoId) {
-    return;
+  var check_tie = sessionStorage.getItem("tie");
+
+  if(check_tie=="false"){
+    var winner_id = sessionStorage.getItem("id");
+    const user = await getUser(winner_id);
+    var score = sessionStorage.getItem("score");
+    document.getElementById("testo_end").innerHTML = "Congratulazioni "+user.name+ " hai vinto con uno score di: "+score;
+  }else{
+    document.getElementById("testo_end").innerHTML = "La partita è finita in parità";
   }
-
-  const video = await getVideo(videoId);
-
-  const downloadVideoEl = $("button#video_download");
-  downloadVideoEl.click(() => {
-    fetch(`${Config.SERVER_URL}${video.path}`)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const blobURL = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = blobURL;
-        a.style = "display: none";
-        a.download = "strike_a_pose.mp4";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      });
-  });
 });

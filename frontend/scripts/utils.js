@@ -1,5 +1,9 @@
 import { Config } from "./config.js";
-import { getLevel, getPicture, postVideo } from "./fetchUtils.js";
+import { getLevel, getPicture, postVideo} from "./fetchUtils.js";
+
+//Variabili score che devono essere globali
+let score1 = 0;
+let score2 = 0;
 
 export const createPoseDistanceFrom = (keypointsA = []) => {
   const [avgXA, avgYA] = keypointsA
@@ -166,7 +170,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startTimer = async (minutes = 1, seconds = 0, bool = true) => {
+export const startTimer = async (id1, id2, minutes = 1, seconds = 0, bool = true) => {
 
   setInterval(function(){
     if (bool == true) {
@@ -183,25 +187,40 @@ export const startTimer = async (minutes = 1, seconds = 0, bool = true) => {
         seconds = 59;
         document.getElementById("seconds").innerHTML = 59;
       }
-    }
-    if(minutes==0 && seconds==0){
-      if(bool == true){
-         alert("The time is over!")
-         location.href= "end.html"
+      console.log(score1);
+      console.log(score2);
+      if(minutes==0 && seconds==0){
+        var tie = false;
+        alert("The time is over!")
+        //Mettere nel database gli score dei giocatori 
+        //con eventuale controllo se score >= di quello precedente
+        if(score1 > score2){
+          sessionStorage.setItem("id", id1)
+          sessionStorage.setItem("score", score1);
+          sessionStorage.setItem("tie", tie)
+        }else if (score1 == score2){
+          tie = true;
+          sessionStorage.setItem("tie", tie)
+        }else{
+          sessionStorage.setItem("id", id2)
+          sessionStorage.setItem("score", score2);
+          sessionStorage.setItem("tie", tie)
+        }
+        location.href= "end.html"
+        bool = false;
       }
-      bool = false;
     }
   },1000)
-} 
+}
+
 
 export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) => {
   $("#main").hide();
   const level = await getLevel(levelId);
 
+  //Variabili per la gestione di round e punteggi
   let round = 0;
-  let count_match = 0; 
-  let count1 = 0;
-  let count2 = 0;
+  let count_match = 0;
   let i = 0;
   const pictures_Array = new Array(); //Array delle immagini
   var start_timer = true;
@@ -264,9 +283,9 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
       $("#score").text(`${computedDistancePercentage}%`);
 
       camCanvas1.drawImage(video);
-      document.getElementById("s1").innerHTML = count1;
+      document.getElementById("s1").innerHTML = score1;
       // secondo counter
-      document.getElementById("s2").innerHTML = count2;
+      document.getElementById("s2").innerHTML = score2;
       
       if (Config.DEBUG) {
         //gestione debug per più persone contemporaneamente
@@ -280,10 +299,10 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
 
           //condizioni per incrementare il punteggio dei giocatori (entra neli corrispettivi if dalla terza posa)
           if (count_match > 1 && id1 == computedDistance[i].id ){
-            count1++;
+            score1++;
           }
           if (count_match > 1 && id2 == computedDistance[i].id ){
-            count2++;
+            score2++;
           }
 
           // distinzione dei due giocatori, prova
@@ -292,7 +311,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
              count_match++;
              round--;
              //stampa round su console (per debug)
-             console.log(round);
+             //console.log(round);
           }else if(count_match === 1){// distinzione giocatore 2
             for(let j=0; j<computedDistance.length; j++){ //CAMBIARE I CON J
               if(computedDistance[i].id != id1){
@@ -302,25 +321,25 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
             count_match++;
             //round--;
              //stampa round su console (per debug)            
-            console.log(round);
-            console.log("round");
+            //console.log(round);
+            //console.log("round");
           }
 
           round++;
           document.getElementById("nround").innerHTML = round;
-          if (start_timer == true) {
-            startTimer();
-            start_timer = false;
+          if(start_timer == true && round >0){
+            startTimer(id1, id2)
+            start_timer=false;
           }
 
           console.log(round);
           // incremento punteggi (entra nel if solo dopo le prime due pose per registrare id dei giocatori)
           
-          document.getElementById("s1").innerHTML = count1;
-          document.getElementById("s2").innerHTML = count2;
+          document.getElementById("s1").innerHTML = score1;
+          document.getElementById("s2").innerHTML = score2;
           imgQueue.clear();
           // non esce dal ciclo ma da gestire attraverso timer
-          // adesso dovrebbe uscire comunque da cambiare 
+          // adesso dovrebbe uscire comunque da cambiare
           await nextRound();
         }
       }
