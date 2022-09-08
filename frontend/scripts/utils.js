@@ -1,5 +1,5 @@
 import { Config } from "./config.js";
-import { getLevel, getPicture, postVideo} from "./fetchUtils.js";
+import { getLevel, getPicture, getUser} from "./fetchUtils.js";
 
 //Variabili score che devono essere globali
 let score1 = 0;
@@ -170,9 +170,9 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startTimer = async (id1, id2, minutes = 1, seconds = 0, bool = true) => {
-
-  setInterval(function(){
+export const startTimer = async (user1_id, user2_id, minutes = 1, seconds = 0, bool = true) => {
+  
+  setInterval(async function(){
     if (bool == true) {
       seconds--;
       if(seconds==-1){
@@ -187,22 +187,32 @@ export const startTimer = async (id1, id2, minutes = 1, seconds = 0, bool = true
         seconds = 59;
         document.getElementById("seconds").innerHTML = 59;
       }
-      console.log(score1);
-      console.log(score2);
+      //finisce timer
       if(minutes==0 && seconds==0){
+
+        const user1 =  await getUser(user1_id);
+        const user2 =  await getUser(user2_id);
+
+        var old_score1 = user1.score;
+        var old_score2 = user2.score;
+
+        console.log(old_score1);
+        console.log(old_score2);
+
+
         var tie = false;
         alert("The time is over!")
         //Mettere nel database gli score dei giocatori 
         //con eventuale controllo se score >= di quello precedente
         if(score1 > score2){
-          sessionStorage.setItem("id", id1)
+          sessionStorage.setItem("id", user1_id)
           sessionStorage.setItem("score", score1);
           sessionStorage.setItem("tie", tie)
         }else if (score1 == score2){
           tie = true;
           sessionStorage.setItem("tie", tie)
         }else{
-          sessionStorage.setItem("id", id2)
+          sessionStorage.setItem("id", user2_id)
           sessionStorage.setItem("score", score2);
           sessionStorage.setItem("tie", tie)
         }
@@ -214,11 +224,13 @@ export const startTimer = async (id1, id2, minutes = 1, seconds = 0, bool = true
 }
 
 
-export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) => {
+export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, user2_id) => {
   $("#main").hide();
   const level = await getLevel(levelId);
 
   //Variabili per la gestione di round e punteggi
+  let id1;
+  let id2;
   let round = 0;
   let count_match = 0;
   let i = 0;
@@ -320,19 +332,17 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, id1, id2) 
             }
             count_match++;
             //round--;
-             //stampa round su console (per debug)            
-            //console.log(round);
-            //console.log("round");
+            
           }
 
           round++;
           document.getElementById("nround").innerHTML = round;
           if(start_timer == true && round >0){
-            startTimer(id1, id2)
+            startTimer(user1_id, user2_id)
             start_timer=false;
           }
 
-          console.log(round);
+          
           // incremento punteggi (entra nel if solo dopo le prime due pose per registrare id dei giocatori)
           
           document.getElementById("s1").innerHTML = score1;

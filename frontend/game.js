@@ -23,6 +23,6 @@ $(async () => {
   //Codice per gestire la classifica generale 
 
 
-  initGame(levelId, video, camCanvas1, imgCanvas);
+  initGame(levelId, video, camCanvas1, imgCanvas, id1, id2);
 });
 

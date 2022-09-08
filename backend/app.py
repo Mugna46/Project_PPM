@@ -46,7 +46,7 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password, password)
 
     def as_dict(self):
-        return {"id": self.id, "email": self.email, "name": self.name}
+        return {"id": self.id, "email": self.email, "name": self.name, "score": self.score}
 
 
 class Level(db.Model):
@@ -130,7 +130,7 @@ def signup():
 
 @app.route("/api/v1/user/me/<id>", methods=["GET"])
 @jwt_required()
-def user_me(id):
+def user(id):
     user = User.query.get(int(id))
     return jsonify(user.as_dict())
 
@@ -139,7 +139,7 @@ def user_me(id):
 @jwt_required()
 def get_userme(): 
     return jsonify(current_user.as_dict())    
-
+  
 
 @app.route("/api/v1/pictures/", methods=["POST"])
 def post_picture():
@@ -175,6 +175,6 @@ def get_video(id):
 
 if __name__== "__main__":
     # il container backend funziona perfettamente però quando gli chiedo di creare il database da errore
-    db.create_all()
+    
     app.run()
 
