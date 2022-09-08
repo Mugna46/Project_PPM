@@ -1,5 +1,5 @@
 import { Config } from "./config.js";
-import { getLevel, getPicture, getUser} from "./fetchUtils.js";
+import { getLevel, getPicture, getUser, postScore} from "./fetchUtils.js";
 
 //Variabili score che devono essere globali
 let score1 = 0;
@@ -170,7 +170,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startTimer = async (user1_id, user2_id, minutes = 1, seconds = 0, bool = true) => {
+export const startTimer = async (user1_id, user2_id, minutes = 0, seconds = 30, bool = true) => {
   
   setInterval(async function(){
     if (bool == true) {
@@ -192,14 +192,14 @@ export const startTimer = async (user1_id, user2_id, minutes = 1, seconds = 0, b
 
         const user1 =  await getUser(user1_id);
         const user2 =  await getUser(user2_id);
-
         var old_score1 = user1.score;
         var old_score2 = user2.score;
-
-        console.log(old_score1);
-        console.log(old_score2);
-
-
+        if(score1 > old_score1){
+         postScore(user1_id, score1);
+        }
+        if(score2 > old_score2){
+          postScore(user2_id, score2);
+        }
         var tie = false;
         alert("The time is over!")
         //Mettere nel database gli score dei giocatori 
@@ -227,6 +227,7 @@ export const startTimer = async (user1_id, user2_id, minutes = 1, seconds = 0, b
 export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, user2_id) => {
   $("#main").hide();
   const level = await getLevel(levelId);
+  
 
   //Variabili per la gestione di round e punteggi
   let id1;
@@ -337,8 +338,9 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
 
           round++;
           document.getElementById("nround").innerHTML = round;
+          
           if(start_timer == true && round >0){
-            startTimer(user1_id, user2_id)
+            startTimer(user1_id, user2_id);
             start_timer=false;
           }
 

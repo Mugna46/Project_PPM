@@ -40,6 +40,13 @@ export const postVideo = (formData) =>
     })
   );
 
+  export const postScore = (id, score) =>
+  fetchJson(
+    fetch(`${Config.BASE_URL}user/me/${id},${score}`, {
+      method: "POST",
+    })
+  );  
+
 export const getVideo = (id) =>
   fetchJson(
     fetch(`${Config.BASE_URL}videos/${id}`, {

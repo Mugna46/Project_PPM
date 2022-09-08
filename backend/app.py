@@ -173,8 +173,17 @@ def get_video(id):
     video = Video.query.get(int(id))
     return jsonify(video.as_dict())
 
+# funzioni che aggiorna gli score dei giocatori sul db
+@app.route('/api/v1/user/me/<id>,<score>', methods=["POST"])
+@cross_origin()
+def post_score(id, score):
+    user = User.query.get(int(id))
+    user.score = score
+    db.session.add(user)
+    db.session.commit()
+    return jsonify(user.as_dict())
+
 if __name__== "__main__":
     # il container backend funziona perfettamente però quando gli chiedo di creare il database da errore
-    
     app.run()
 
