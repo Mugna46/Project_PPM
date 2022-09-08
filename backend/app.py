@@ -22,9 +22,9 @@ CORS(app)
 bcrypt = Bcrypt(app)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose:pose@db/pose' db docker
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_app@localhost/pose_app' # db localhost
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_apppsw@localhost/pose_app' # db localhost
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'thisisasecretkey'
+app.config['SECRET_KEY'] = 'secret'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
 app.config['CORS_METHODS'] = ["*"]
 app.config['CORS_ALLOW_HEADERS'] = ['origin', 'X-Requested-With', 'Content-Type', 'Accept']
@@ -39,7 +39,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True, nullable=False)
     name = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255), nullable=False)
-    score = db.Column(db.String(255), nullable=False)
+    score = db.Column(db.Integer)
 
     # NOTE: In a real application make sure to properly hash and salt passwords
     def check_password(self, password):
@@ -62,8 +62,9 @@ class Level(db.Model):
 class Picture(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     path = db.Column(db.String(255), nullable=False)
-    level_id = db.Column(db.Integer, db.ForeignKey('level.id'),
-                         nullable=False)
+    level_id = db.Column(db.Integer, db.ForeignKey('level.id'),nullable=False)
+    description = db.Column(db.String(255))
+                             
 
     def as_dict(self):
         return {"id": self.id, "path": self.path}
@@ -174,6 +175,6 @@ def get_video(id):
 
 if __name__== "__main__":
     # il container backend funziona perfettamente però quando gli chiedo di creare il database da errore
-    
+    db.create_all()
     app.run()
 
