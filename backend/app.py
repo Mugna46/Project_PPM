@@ -175,8 +175,8 @@ def get_levels():
 def get_nplayers():
     db = MySQLdb.connect("localhost", "pose_app", "pose_apppsw", "pose_app")
     cursor = db.cursor()
+    cursor.execute("SELECT * FROM user")
     id = cursor.fetchall()
-
     return jsonify(id)
 
 # funzioni che aggiorna gli score dei giocatori sul db

@@ -1,5 +1,7 @@
 import { Config } from "./scripts/config.js";
 
+
+
 $(() => {
   const form = $("#signup-form");
   form.submit(async (e) => {
