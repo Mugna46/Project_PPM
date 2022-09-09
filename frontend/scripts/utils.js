@@ -239,7 +239,7 @@ export const addElement = async () => {
   for(let i=0; i<ordered.length; i++){
   var entry = document.createElement("li");
   entry.appendChild(document.createTextNode(ordered[i].user));
-  entry.appendChild(document.createTextNode(": "));\
+  entry.appendChild(document.createTextNode(": "));
   entry.appendChild(document.createTextNode(ordered[i].score));
   list.appendChild(entry);
   }
