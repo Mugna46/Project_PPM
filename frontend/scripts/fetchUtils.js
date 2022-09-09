@@ -67,6 +67,16 @@ export const getUser = (id) =>
     })
   );
 
+  export const getnPlayers = () =>
+  fetchJson(
+    fetch(`${Config.BASE_URL}players`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+      },      
+      method: "GET",
+    })
+  );
+
   export const getUserMe = () =>
   fetchJson(
     fetch(`${Config.BASE_URL}user/me`, {

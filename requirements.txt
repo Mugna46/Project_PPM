@@ -13,3 +13,4 @@ tensorflow==2.9.2
 imageio==2.21.2
 matplotlib==3.5
 mysql-connector-python==8.0.30
+pymysql==1.0.2

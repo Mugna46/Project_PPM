@@ -10,6 +10,8 @@ from flask_bcrypt import Bcrypt
 from flask_login import UserMixin, current_user
 from flask_cors import CORS, cross_origin
 import os
+import pymysql
+import MySQLdb
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
@@ -39,14 +41,15 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True, nullable=False)
     name = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255), nullable=False)
-    score = db.Column(db.Integer)
+    score = db.Column(db.Integer) 
+
 
     # NOTE: In a real application make sure to properly hash and salt passwords
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password, password)
 
     def as_dict(self):
-        return {"id": self.id, "email": self.email, "name": self.name, "score": self.score}
+        return {"id": self.id, "email": self.email, "name": self.name, "score": self.score, }
 
 
 class Level(db.Model):
@@ -122,7 +125,7 @@ def signup():
     password = request.json.get("password", None)
     Username = request.json.get("name", None)
     hashed_password = bcrypt.generate_password_hash(password)
-    new_user = User(email=email, name=Username, password=hashed_password)
+    new_user = User(email=email, name=Username, password=hashed_password, score=0)
     db.session.add(new_user)
     db.session.commit()
     return jsonify(new_user.as_dict())
@@ -168,10 +171,13 @@ def get_levels():
     return jsonify([level.as_dict() for level in levels])
 
 
-@app.route("/api/v1/videos/<id>", methods=["GET"])
-def get_video(id):
-    video = Video.query.get(int(id))
-    return jsonify(video.as_dict())
+@app.route("/api/v1/players", methods=["GET"])
+def get_nplayers():
+    db = MySQLdb.connect("localhost", "pose_app", "pose_apppsw", "pose_app")
+    cursor = db.cursor()
+    id = cursor.fetchall()
+
+    return jsonify(id)
 
 # funzioni che aggiorna gli score dei giocatori sul db
 @app.route('/api/v1/user/me/<id>,<score>', methods=["POST"])

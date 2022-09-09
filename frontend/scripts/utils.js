@@ -1,5 +1,5 @@
 import { Config } from "./config.js";
-import { getLevel, getPicture, getUser, postScore} from "./fetchUtils.js";
+import { getLevel, getPicture, getUser, postScore, getnPlayers} from "./fetchUtils.js";
 
 //Variabili score che devono essere globali
 let score1 = 0;
@@ -170,7 +170,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startTimer = async (user1_id, user2_id, minutes = 0, seconds = 30, bool = true) => {
+export const startTimer = async (user1_id, user2_id, minutes = 1, seconds = 0, bool = true) => {
   
   setInterval(async function(){
     if (bool == true) {
@@ -223,10 +223,33 @@ export const startTimer = async (user1_id, user2_id, minutes = 0, seconds = 30, 
   },1000)
 }
 
+export const addElement = async () => {
+  let list = document.getElementById("playerlist")
+  let num = await getnPlayers();
+  const ordered = [];
+  for(let i=0; i<num.length; i++){
+    ordered[i] = {
+      user: num[i][2],
+      score: num[i][4]
+    };
+  }
+  ordered.sort(function(x,y){
+    return y.score-x.score;
+  });
+  for(let i=0; i<ordered.length; i++){
+  var entry = document.createElement("li");
+  entry.appendChild(document.createTextNode(ordered[i].user));
+  entry.appendChild(document.createTextNode(": "));\
+  entry.appendChild(document.createTextNode(ordered[i].score));
+  list.appendChild(entry);
+  }
+}
+
 
 export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, user2_id) => {
   $("#main").hide();
   const level = await getLevel(levelId);
+  addElement();
   
 
   //Variabili per la gestione di round e punteggi
@@ -240,8 +263,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
 
   document.getElementById("nround").innerHTML = round;
   
-  //stampa su console il numero di immagini nel database locale (per debug)
-  console.log(level.picture_ids.length)
+  // crea array per scorrere le immagini
   for(let i=0;i<level.picture_ids.length;i++){
     pictures_Array.push(i);
   }

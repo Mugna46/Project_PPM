@@ -280,14 +280,6 @@
 
   }
 
-  #camCanvas2 {
-    width: 966px;
-    height: 540px;
-    margin-left: -480px;
-    transform: scaleX(-1);
-    
-  }
-
   .containeropera {
     display: flex;
     width: 25%;
