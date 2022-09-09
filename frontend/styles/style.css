@@ -481,5 +481,25 @@
   .img-fluid{
     width: 100%;
   }
+
+  .div_end #testo_end {
+    color: black;
+    font-size: 27px;
+    font-weight: 500;
+
+  }
+
+  .btn-primary {
+    background-color: #FF5733;
+    border: 2px solid whitesmoke;
+    text-align:center;
+    display:block;
+  }
+  .btn-secondary {
+    background-color: #912912;
+    border: 2px solid whitesmoke;
+    text-align:center;
+    display:block;
+  }
     
   
