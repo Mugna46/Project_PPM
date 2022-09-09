@@ -224,7 +224,8 @@ export const startTimer = async (user1_id, user2_id, minutes = 1, seconds = 0, b
 }
 
 export const addElement = async () => {
-  let list = document.getElementById("playerlist")
+  let listname = document.getElementById("playerlistname")
+  let listscore = document.getElementById("playerlistscore")
   let num = await getnPlayers();
   const ordered = [];
   for(let i=0; i<num.length; i++){
@@ -237,11 +238,13 @@ export const addElement = async () => {
     return y.score-x.score;
   });
   for(let i=0; i<ordered.length; i++){
-  var entry = document.createElement("li");
-  entry.appendChild(document.createTextNode(ordered[i].user));
-  entry.appendChild(document.createTextNode(": "));
-  entry.appendChild(document.createTextNode(ordered[i].score));
-  list.appendChild(entry);
+  var entryname = document.createElement("li");
+  var entryscore = document.createElement("li");
+  entryname.appendChild(document.createTextNode(ordered[i].user));
+  entryname.appendChild(document.createTextNode(": "));
+  entryscore.appendChild(document.createTextNode(ordered[i].score));
+  listname.appendChild(entryname);
+  listscore.appendChild(entryscore);
   }
 }
 

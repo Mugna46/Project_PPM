@@ -353,6 +353,22 @@
     margin-bottom: 20px;
   }
 
+  .playername {
+    flex: 80%;
+    padding-left: 30px;
+    font-size: large;
+  }
+
+  .playerscore {
+    flex: 20%;
+    padding-right: 50px;
+    font-size: large;
+  }
+
+  .playerscore ol {
+    list-style-type: none;
+  }
+
   /*Codice per adattamento a dispositivi di width <=1200px */
   @media only screen and (max-width: 1200px){
 
