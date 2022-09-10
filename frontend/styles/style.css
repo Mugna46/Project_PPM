@@ -363,16 +363,36 @@
     flex: 80%;
     padding-left: 30px;
     font-size: large;
+    font-weight: 500;
+    padding-top: 10px;
   }
 
   .playerscore {
     flex: 20%;
-    padding-right: 50px;
+    padding-right: 30px;
     font-size: large;
+    font-weight: 500;
+    padding-top: 10px;
   }
 
-  .playerscore ol {
-    list-style-type: none;
+  #bootstrap-override .list-group-item {
+    border: 2px solid blue;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  #podium {
+    background-color: yellow;
+  }
+
+  #bootstrap-override .playername .list-group .list-group-item{
+    border-right: none;
+  }
+
+  #bootstrap-override .playerscore .list-group .list-group-item{
+    border-left: none;
   }
 
   /*Codice per adattamento a dispositivi di width <=1200px */

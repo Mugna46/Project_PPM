@@ -7,19 +7,29 @@
     <title>Strike a Pose</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
-    
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"
   ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"
+  ></script>
 </head>
-<body>
+<body id="bootstrap-override">
     <div id="1" class="main_container">
         <video id="video" autoplay playsinline width="966" height="540"></video>
         <div class="containerspan">
@@ -80,8 +90,8 @@
             <div class="containerleaderboard">
                 <p class="container_title">Classifica Generale</p>
                 <div class="leaderboard">
-                    <div class="playername"><ol id="playerlistname"></ol></div>
-                    <div class="playerscore"><ol id="playerlistscore"></ol></div>
+                    <div class="playername"><ol class="list-group" id="playerlistname"></ol></div>
+                    <div class="playerscore"><ol class="list-group" id="playerlistscore"></ol></div>
                 </div>
             </div>
         </div>
