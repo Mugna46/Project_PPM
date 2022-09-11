@@ -2,9 +2,9 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "index": "node index.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
@@ -13,6 +13,6 @@
   "dependencies": {
     "g": "^2.0.1",
     "npm": "^8.18.0",
-    "webcam-easy": "^1.0.5"
+    "express": "^4.16.1"
   }
 }
