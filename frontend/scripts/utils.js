@@ -243,9 +243,21 @@ export const addElement = async () => {
     entryname.className = "list-group-item";
     var entryscore = document.createElement("li");
     entryscore.className = "list-group-item";
-    if(position < 3){
-      entryname.id = "podium";
-      entryscore.id = "podium";
+    switch (position) {
+      case 0:
+        entryname.id = "podium1";
+        entryscore.id = "podium1";
+        break;
+      case 1:
+        entryname.id = "podium2";
+        entryscore.id = "podium2";  
+        break;
+      case 2:
+        entryname.id = "podium3";
+        entryscore.id = "podium3";
+        break;
+      default:
+        break;
     }
     position++;
     entryname.appendChild(document.createTextNode(ordered[i].user));
