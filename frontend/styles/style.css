@@ -525,17 +525,29 @@
   /*Styles for end.html*/
 
   #final_title{
-    text-align: center;
+    align-self: center;
   }
   .img-fluid{
     width: 100%;
+  }
+
+  .div_end {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttonleader {
+    background-color: rgba(128, 0, 128, 0.664);
+    width: 50%;
+    height: 40px;
+    align-self: center;
+    border-radius: 25px;
   }
 
   .div_end #testo_end {
     color: black;
     font-size: 27px;
     font-weight: 500;
-
   }
 
   .btn-primary {
