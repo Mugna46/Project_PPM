@@ -1,7 +1,9 @@
 import { Config } from "./scripts/config.js";
-import { getUser, getVideo } from "./scripts/fetchUtils.js";
+import { getUser} from "./scripts/fetchUtils.js";
+import {createLeaderboard} from "./scripts/utils.js";
 
 $(async () => {
+
   const queryParams = new URLSearchParams(window.location.search);
 
   var check_tie = sessionStorage.getItem("tie");
@@ -14,4 +16,18 @@ $(async () => {
   }else{
     document.getElementById("testo_end").innerHTML = "La partita è finita in parità";
   }
+
+  createLeaderboard();
+
+  $(document).ready(function(){
+    $("#menuButton").click(function(){
+      $("#menu").slideToggle();
+    }); 
+  });
+
+  
 });
+
+
+
+
