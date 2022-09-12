@@ -55,7 +55,7 @@
   #testo_end {
     background-color: white;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 27px;
     font-family: Helvetica, sans-serif;
     text-align: center;
     line-height: calc(100% + 0.5rem);
@@ -440,6 +440,7 @@
       margin-bottom: 7px;
       overflow-y: auto;
     }
+
   }
 
   /*Codice per adattamento a dispositivi di width <=500px */
@@ -520,11 +521,29 @@
       margin-left: 0px;
       margin-right: 0px;
     }
+    .div_end #testo_end {
+      font-size: 23px;
+    }
+    #final_title{
+      font-size: 170%;
+    }
   }
 
   @media only screen and (max-height: 880px){
     .div_end{
       width: 40%;
+    }
+    #final_title{
+      font-size: 150%;
+    }
+    .btn-primary{
+      font-size: 85%
+    }
+    .btn-secondary{
+      font-size: 85%;
+    }
+    .div_end #testo_end {
+      font-size: 23px;
     }
   }
 
@@ -532,23 +551,35 @@
     .div_end{
       width: 30%;
     }
+    #final_title{
+      font-size: 100%;
+    }
+    .btn-primary{
+      font-size: 70%
+    }
+    .btn-secondary{
+      font-size: 70%;
+    }
+    .div_end #testo_end {
+      font-size: 20px;
+    }
   }
 
   @media only screen and (max-height: 620px){
     .div_end{
       width: 20%;
     }
-    .buttonleader {
-      font-size: 70%;
-    }
     #final_title{
-      font-size: 200%;
+      font-size: 80%;
     }
     .btn-primary{
       font-size: 60%
     }
     .btn-secondary{
       font-size: 60%;
+    }
+    .div_end #testo_end {
+      font-size: 18px;
     }
   }
 
@@ -557,7 +588,16 @@
       width: 15%;
     }
     #final_title{
-      font-size: 150%;
+      font-size: 50%;
+    }
+    .btn-primary{
+      font-size: 50%
+    }
+    .btn-secondary{
+      font-size: 50%;
+    }
+    .div_end #testo_end {
+      font-size: 18px;
     }
   }
 
@@ -577,16 +617,11 @@
 
   .buttonleader {
     background-color: rgba(128, 0, 128, 0.664);
+    font-size: 15px;
     width: 50%;
     height: 40px;
     align-self: center;
     border-radius: 25px;
-  }
-
-  .div_end #testo_end {
-    color: black;
-    font-size: 27px;
-    font-weight: 500;
   }
 
   .btn-primary {
