@@ -403,9 +403,12 @@
   }
 
   /*Codice per adattamento a dispositivi di width <=1200px */
-  @media only screen and (max-width: 1200px){
+  @media only screen and (max-width: 1280px){
 
     .round{
+      padding-right: 20px;
+    }
+    .round #name{
       padding-right: 20px;
     }
     .cointainersecondary{
