@@ -1,4 +1,4 @@
-.btn-primary {
+ .btn-primary {
     background-color: #FF5733;
     border: none;
   }
@@ -25,12 +25,13 @@
     margin-bottom: 1rem;
   }
   
-  #final_title {
+  .div_end #final_title {
     color:#FF5733;
     font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 2.5rem;
     text-shadow: 2px 2px 4px black;
+    align-self: center;
   }
   
   
@@ -55,7 +56,7 @@
   #testo_end {
     background-color: white;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 27px;
     font-family: Helvetica, sans-serif;
     text-align: center;
     line-height: calc(100% + 0.5rem);
@@ -401,9 +402,12 @@
   }
 
   /*Codice per adattamento a dispositivi di width <=1200px */
-  @media only screen and (max-width: 1200px){
+  @media only screen and (max-width: 1280px){
 
     .round{
+      padding-right: 20px;
+    }
+    .round #name{
       padding-right: 20px;
     }
     .cointainersecondary{
@@ -438,6 +442,7 @@
       margin-bottom: 7px;
       overflow-y: auto;
     }
+
   }
 
   /*Codice per adattamento a dispositivi di width <=500px */
@@ -518,11 +523,23 @@
       margin-left: 0px;
       margin-right: 0px;
     }
+    .div_end #testo_end {
+      font-size: 23px;
+    }
   }
 
   @media only screen and (max-height: 880px){
     .div_end{
       width: 40%;
+    }
+    .btn-primary{
+      font-size: 85%
+    }
+    .btn-secondary{
+      font-size: 85%;
+    }
+    .div_end #testo_end {
+      font-size: 23px;
     }
   }
 
@@ -530,17 +547,20 @@
     .div_end{
       width: 30%;
     }
+    .btn-primary{
+      font-size: 70%
+    }
+    .btn-secondary{
+      font-size: 70%;
+    }
+    .div_end #testo_end {
+      font-size: 20px;
+    }
   }
 
   @media only screen and (max-height: 620px){
     .div_end{
       width: 20%;
-    }
-    .buttonleader {
-      font-size: 70%;
-    }
-    #final_title{
-      font-size: 200%;
     }
     .btn-primary{
       font-size: 60%
@@ -548,22 +568,28 @@
     .btn-secondary{
       font-size: 60%;
     }
+    .div_end #testo_end {
+      font-size: 18px;
+    }
   }
 
   @media only screen and (max-height: 500px){
     .div_end{
       width: 15%;
     }
-    #final_title{
-      font-size: 150%;
+    .btn-primary{
+      font-size: 50%
+    }
+    .btn-secondary{
+      font-size: 50%;
+    }
+    .div_end #testo_end {
+      font-size: 18px;
     }
   }
 
   /*Styles for end.html*/
 
-  #final_title{
-    align-self: center;
-  }
   .img-fluid{
     width: 100%;
     height: 80%;
@@ -576,16 +602,11 @@
 
   .buttonleader {
     background-color: rgba(128, 0, 128, 0.664);
+    font-size: 15px;
     width: 50%;
     height: 40px;
     align-self: center;
     border-radius: 25px;
-  }
-
-  .div_end #testo_end {
-    color: black;
-    font-size: 27px;
-    font-weight: 500;
   }
 
   .btn-primary {
