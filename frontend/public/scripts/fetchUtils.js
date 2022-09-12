@@ -29,17 +29,6 @@ export const getLevel = (id) =>
     })
   );
 
-export const postVideo = (formData) =>
-  fetchJson(
-    fetch(`${Config.BASE_URL}videos`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
-      },
-      method: "POST",
-      body: formData,
-    })
-  );
-
   export const postScore = (id, score) =>
   fetchJson(
     fetch(`${Config.BASE_URL}user/me/${id},${score}`, {
@@ -70,9 +59,6 @@ export const getUser = (id) =>
   export const getnPlayers = () =>
   fetchJson(
     fetch(`${Config.BASE_URL}players`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
-      },      
       method: "GET",
     })
   );

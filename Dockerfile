@@ -1,7 +1,7 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM ubuntu:20.04
 
-EXPOSE 3305
+
 
 RUN apt-get update -y && \
     apt-get install -y python3-pip python-dev
@@ -15,5 +15,7 @@ COPY requirements.txt requirements.txt
 RUN  pip install -r requirements.txt
 COPY . .
 
+ENTRYPOINT [ "python3" ]
+
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["python3", "backend/app.py"]
+CMD ["backend/app.py"]

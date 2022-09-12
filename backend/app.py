@@ -70,17 +70,7 @@ class Picture(db.Model):
                              
 
     def as_dict(self):
-        return {"id": self.id, "path": self.path}
-
-
-class Video(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    path = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-                        nullable=False)
-
-    def as_dict(self):
-        return {"id": self.id, "path": self.path}
+        return {"id": self.id, "path": self.path, "description": self.description}
 
 
 # Register a callback function that takes whatever object is passed in as the
@@ -173,7 +163,7 @@ def get_levels():
 
 @app.route("/api/v1/players", methods=["GET"])
 def get_nplayers():
-    db = MySQLdb.connect("localhost", "pose_app", "pose_apppsw", "pose_app")
+    db = MySQLdb.connect("db", "pose", "pose", "pose")
     cursor = db.cursor()
     cursor.execute("SELECT * FROM user")
     id = cursor.fetchall()
@@ -190,6 +180,5 @@ def post_score(id, score):
     return jsonify(user.as_dict())
 
 if __name__== "__main__":
-    # il container backend funziona perfettamente però quando gli chiedo di creare il database da errore
-    app.run()
+    app.run(host='0.0.0.0')
 

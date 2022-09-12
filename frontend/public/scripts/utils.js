@@ -135,6 +135,7 @@ export const createPictureLoader = async (imgCanvas) => {
   return async (id) => {
     const picture = await getPicture(id);
     const img = await createImage(`${Config.SERVER_URL}${picture.path}`);
+    document.getElementById("desc").innerHTML = picture.description;
     const imagePoses = await strongDetector.estimatePoses(img);
     const imageKPs = normalizeKPs(imagePoses, 0, img.width, img.height);
     const imageKPNames = imageKPs.map((kp) => kp.name);
