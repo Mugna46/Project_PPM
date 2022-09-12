@@ -522,6 +522,45 @@
     }
   }
 
+  @media only screen and (max-height: 880px){
+    .div_end{
+      width: 40%;
+    }
+  }
+
+  @media only screen and (max-height: 720px){
+    .div_end{
+      width: 30%;
+    }
+  }
+
+  @media only screen and (max-height: 620px){
+    .div_end{
+      width: 20%;
+    }
+    .buttonleader {
+      font-size: 70%;
+    }
+    #final_title{
+      font-size: 200%;
+    }
+    .btn-primary{
+      font-size: 60%
+    }
+    .btn-secondary{
+      font-size: 60%;
+    }
+  }
+
+  @media only screen and (max-height: 500px){
+    .div_end{
+      width: 15%;
+    }
+    #final_title{
+      font-size: 150%;
+    }
+  }
+
   /*Styles for end.html*/
 
   #final_title{
