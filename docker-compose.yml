@@ -6,9 +6,13 @@ services:
     container_name: frontend
     image:  frontend
     build: 
-      context: .
-      
-
+      context: frontend
+    depends_on:
+      - api
+    ports:
+      - 5050:5050
+    networks:
+      - database
 
   api:
     container_name: backend
