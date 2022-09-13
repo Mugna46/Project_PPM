@@ -24,6 +24,10 @@
     width: 4rem;
     margin-bottom: 1rem;
   }
+
+  .card-body{
+    text-align: center;
+  }
   
   .div_end #final_title {
     color:#FF5733;
@@ -621,7 +625,6 @@
 
   .buttonleader {
     background-color: rgba(128, 0, 128, 0.664);
-    font-size: 15px;
     width: 50%;
     height: 40px;
     align-self: center;
