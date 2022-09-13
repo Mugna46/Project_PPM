@@ -41,7 +41,7 @@ CREATE TABLE `level` (
 --
 
 INSERT INTO `level` (`id`, `name`, `description`) VALUES
-(1, 'Partita 1 vs 1', '\"Partita 1 vs 1, due giocatori dovranno sfidarsi cercando di replicare la posa dell\'opera\r\nd\'arte.\"');
+(1, 'Partita 1 vs 1', '\"Due giocatori dovranno sfidarsi cercando di replicare la posa dell\'opera\r\nd\'arte.\"');
 
 -- --------------------------------------------------------
 
