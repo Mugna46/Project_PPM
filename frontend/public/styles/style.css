@@ -536,6 +536,14 @@
     .logo-timer-round{
       justify-content: space-evenly;
     }
+
+    .div_end #menuButton{
+      font-size: 60%;
+    }
+
+    .div_end #final_title{
+      font-size: 160%;
+    }
 }
 
   /*Styles for end.html*/
