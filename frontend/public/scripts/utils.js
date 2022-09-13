@@ -116,7 +116,7 @@ export const createImage = (src) =>
     img.src = src;
   });
 
-// aggiunti id per gestire dubeg e id di tutti
+// aggiunti id per gestire debug e id di tutti
 export const normalizeKPs = (poses, i, width, height) =>
   (poses?.[i]?.keypoints || [])
     .filter((kp) => kp.score > 0.3)
@@ -300,7 +300,6 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
   const userVideoList = [];
 
   const nextRound = async () => {
-    //Scelgo numero random per dare immagine random al round successivo 
 
     const id = level.picture_ids[pictures_Array[i]];
     i++;
