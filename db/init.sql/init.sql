@@ -61,8 +61,8 @@ CREATE TABLE `picture` (
 --
 
 INSERT INTO `picture` (`id`, `path`, `level_id`, `description`) VALUES
-(1, '\\static\\assets\\id1.jpeg', 1, 'posa di prova per identificare il giocatore 1'),
-(2, '\\static\\assets\\id2.jpeg', 1, 'posa di prova per identificare il giocatore 2'),
+(1, '\\static\\assets\\id1.jpeg', 1, 'Giocatore 1 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata.'),
+(2, '\\static\\assets\\id2.jpeg', 1, 'Giocatore 2 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata.'),
 (3, '\\static\\assets\\img0.jpeg', 1, 'San Giovanni Battista è un dipinto a olio su tavola di noce di Leonardo, indossa una pelliccia come erano soliti fare gli eremiti; tale abbigliamento è come se invitasse lo spettatore a spogliarsi degli orpelli per raggiungere la vera spiritualità.'),
 (4, '\\static\\assets\\img1.jpeg', 1, 'La Nascita di Venere è un dipinto a tempera su tela di lino di Sandro Botticelli, la composizione raffigura più precisamente l’approdo sull’isola di Cipro della dea dell’amore e della bellezza, nata dalla spuma del mare e sospinta dai venti Zefiro.'),
 (5, '\\static\\assets\\img2.jpeg', 1, 'Facente parte di una collezione privata parigina, il quadro è un ritratto di Jeanne Hébuterne, una donna che ebbe un\'intensa relazione sentimentale con l\'artista, tanto da morire suicida due giorni dopo la morte di Modigliani.'),
