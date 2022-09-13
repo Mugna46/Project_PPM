@@ -28,6 +28,8 @@ $(() => {
       var id= v.id;
       sessionStorage.setItem("id1", id);
       location.href = "index2.html";
+    }else{
+      alert(jsonResponse)
     }
     return false;
   });

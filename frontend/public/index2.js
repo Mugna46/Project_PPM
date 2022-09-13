@@ -28,6 +28,8 @@ import { getUserMe } from "./scripts/fetchUtils.js";
       var id= v.id;
       sessionStorage.setItem("id2", id);
       location.href = "start.html";
+    }else{
+      alert(jsonResponse)
     }
     return false;
   });
