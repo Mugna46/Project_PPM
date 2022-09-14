@@ -358,9 +358,15 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
           //condizioni per incrementare il punteggio dei giocatori (entra neli corrispettivi if dalla terza posa)
           if (count_match > 1 && id1 == computedDistance[i].id) {
             score1++;
+            console.log('Ha vinto');
+            console.log(computedDistance[i].id);
+            console.log('Ha vinto questo id sopra');
           }
           if (count_match > 1 && id2 == computedDistance[i].id) {
             score2++;
+            console.log('Ha vinto');
+            console.log(computedDistance[i].id);
+            console.log('Ha vinto questo id sopra');
           }
 
           // distinzione dei due giocatori, prova
@@ -371,15 +377,12 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
             //stampa round su console (per debug)
             //console.log(round);
           } else if (count_match === 1) {// distinzione giocatore 2
-            for (let j = 0; j < computedDistance.length; j++) { //CAMBIARE I CON J
-              if (computedDistance[j].id != id1) {
-                id2 = computedDistance[j].id;
-              }
-            }
+            id2 = computedDistance[i].id;
             count_match++;
-            //round--;
-
           }
+          console.log('----------------------------------------');
+          console.log(id1);
+          console.log(id2);
 
           round++;
           document.getElementById("nround").innerHTML = round;
