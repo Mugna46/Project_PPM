@@ -172,7 +172,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startTimer = async (user1_id, user2_id, minutes = 1, seconds = 0, bool = true) => {
+export const startTimer = async (user1_id, user2_id, minutes = 2, seconds = 0, bool = true) => {
 
   setInterval(async function () {
     if (bool == true) {

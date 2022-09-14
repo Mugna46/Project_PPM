@@ -386,11 +386,16 @@
 
   /*Styles for end.html*/
 
+  .img-fluid{
+    align-self: center;
+    max-width: 70%;
+  }
 
   .div_end {
     display: flex;
     flex-direction: column;
     height: auto;
+    margin: 300px;
   }
 
   .buttonleader {
