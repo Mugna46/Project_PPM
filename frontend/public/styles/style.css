@@ -411,6 +411,8 @@
     display: flex;
     flex-direction: column;
     height: auto;
+    background-color: white;
+    margin: 70px 250px 250px 250px;
   }
 
   .buttonleader {
@@ -425,6 +427,7 @@
     border: 2px solid whitesmoke;
     text-align:center;
     display:block;
+    border-radius: 25px;
   }
 
   .btn-primary{
@@ -441,7 +444,7 @@
     position: absolute;
     width: 38%;
     height: 50%;
-    top: 24%;
+    top: 23%;
     border: 4px solid rgba(128, 0, 128, 0.664);
     border-radius: 25px;
     background-color: gray;
@@ -501,7 +504,10 @@
 
   /*Codice per adattamento a dispositivi di width <=500px */
   @media only screen and (max-width: 850px){
-
+    
+    .div_end{
+      margin: 70px;
+    }
    
 
     .logo{
@@ -558,7 +564,7 @@
       width: 95%;
       margin-left: 0px;
       margin-right: 0px;
-      top: 290px;
+      top: 20%;
     }
 
     .div_end #testo_end {

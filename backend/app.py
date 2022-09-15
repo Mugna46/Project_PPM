@@ -23,8 +23,8 @@ app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose:pose@db/pose' #db docker
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_apppsw@localhost/pose_app' # db localhost
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose:pose@db/pose' # db docker
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://pose_app:pose_apppsw@localhost/pose_app'  db localhost
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'secret'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=1)
@@ -66,11 +66,11 @@ class Picture(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     path = db.Column(db.String(255), nullable=False)
     level_id = db.Column(db.Integer, db.ForeignKey('level.id'),nullable=False)
+    name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255))
                              
-
     def as_dict(self):
-        return {"id": self.id, "path": self.path, "description": self.description}
+        return {"id": self.id, "path": self.path, "description": self.description, "name": self.name}
 
 
 # Register a callback function that takes whatever object is passed in as the

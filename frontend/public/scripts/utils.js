@@ -136,6 +136,8 @@ export const createPictureLoader = async (imgCanvas) => {
     const picture = await getPicture(id);
     const img = await createImage(`${Config.SERVER_URL}${picture.path}`);
     document.getElementById("desc").innerHTML = picture.description;
+    const name = picture.name;
+    sessionStorage.setItem("name", name);
     const imagePoses = await strongDetector.estimatePoses(img);
     const imageKPs = normalizeKPs(imagePoses, 0, img.width, img.height);
     const imageKPNames = imageKPs.map((kp) => kp.name);
@@ -172,7 +174,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startTimer = async (user1_id, user2_id, minutes = 2, seconds = 0, bool = true) => {
+export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes = 2, seconds = 0, bool = true) => {
 
   setInterval(async function () {
     if (bool == true) {
@@ -203,20 +205,29 @@ export const startTimer = async (user1_id, user2_id, minutes = 2, seconds = 0, b
           postScore(user2_id, score2);
         }
         var tie = false;
-        alert("The time is over!")
+        var win1;
+        alert("The time is over!") 
         //Mettere nel database gli score dei giocatori 
         //con eventuale controllo se score >= di quello precedente
         if (score1 > score2) {
-          sessionStorage.setItem("id", user1_id)
+          win1 = true;
+          sessionStorage.setItem("id", user1_id);
           sessionStorage.setItem("score", score1);
-          sessionStorage.setItem("tie", tie)
+          sessionStorage.setItem("tie", tie);
+          sessionStorage.setItem("operaN", operaN1);
+          sessionStorage.setItem("win1", win1);
         } else if (score1 == score2) {
           tie = true;
           sessionStorage.setItem("tie", tie)
+          sessionStorage.setItem("operaN1", operaN1);
+          sessionStorage.setItem("operaN2", operaN2);
         } else {
-          sessionStorage.setItem("id", user2_id)
+          win1 = false;
+          sessionStorage.setItem("id", user2_id);
           sessionStorage.setItem("score", score2);
-          sessionStorage.setItem("tie", tie)
+          sessionStorage.setItem("tie", tie);
+          sessionStorage.setItem("operaN", operaN2);
+          sessionStorage.setItem("win1", win1);
         }
         location.href = "end.html"
         bool = false;
@@ -281,6 +292,8 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
   let round = 0;
   let count_match = 0;
   let i = 0;
+  const operaN1 = [];
+  const operaN2 = [];
   const pictures_Array = new Array(); //Array delle immagini
   var start_timer = true;
 
@@ -297,14 +310,12 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
   const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, detectorConfig);
   const pictureLoad = await createPictureLoader(imgCanvas);
 
-  const userVideoList = [];
-
   const nextRound = async () => {
 
     const id = level.picture_ids[pictures_Array[i]];
     i++;
 
-    const { imageKPNames, distanceFromImg } = await pictureLoad(id);
+    const { imageKPNames, distanceFromImg} = await pictureLoad(id);
 
     const imgQueue = queueGenerator(Config.VIDEO_SECONDS * Config.FRAME_RATE);
 
@@ -354,18 +365,22 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
         if (imgQueue.isFull() && 1 - computedDistance[i].score > Config.MATCH_LEVEL) {
           clearInterval(gameLoop);
 
+          var Name = sessionStorage.getItem("name");
+
           //condizioni per incrementare il punteggio dei giocatori (entra neli corrispettivi if dalla terza posa)
           if (count_match > 1 && id1 == computedDistance[i].id) {
             score1++;
+            operaN1.push(Name);
             console.log('Ha vinto');
             console.log(computedDistance[i].id);
-            console.log('Ha vinto questo id sopra');
+            console.log(Name);
           }
           if (count_match > 1 && id2 == computedDistance[i].id) {
             score2++;
+            operaN2.push(Name);
             console.log('Ha vinto');
             console.log(computedDistance[i].id);
-            console.log('Ha vinto questo id sopra');
+            console.log(Name);
           }
 
           // distinzione dei due giocatori, prova
@@ -387,7 +402,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
           document.getElementById("nround").innerHTML = round;
 
           if (start_timer == true && round > 0) {
-            startTimer(user1_id, user2_id);
+            startTimer(user1_id, user2_id, operaN1, operaN2);
             start_timer = false;
           }
 
