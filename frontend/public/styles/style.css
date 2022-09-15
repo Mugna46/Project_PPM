@@ -390,13 +390,6 @@
     display: flex;
     flex-direction: column;
     height: auto;
-<<<<<<< HEAD
-    padding: 20px;
-    margin: 5% 30% 30% 30%;
-    background-color: white;
-=======
-    margin: 300px;
->>>>>>> 6a044ad1fba5645b7b8af1af38f85b4b921b1f0b
   }
 
   .buttonleader {
