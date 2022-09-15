@@ -378,6 +378,27 @@
     border-left: none;
   }
 
+  /*Styles for end0.html*/
+
+  .div_end0{
+    display: flex;
+    height: auto;
+    align-items: center;
+    border: 4px solid white;
+  }
+
+  .text-end0{
+    flex: 50%;
+  }
+
+  .div_end0 #testo-player0, #testo_pose_fatte{
+    border: 4px solid black;
+    text-align: center;
+  }
+
+  .screen-player{
+    border: 25px solid black;
+  }
 
   /*Styles for end.html*/
 
