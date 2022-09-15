@@ -12,9 +12,10 @@ $(async () => {
     var winner_id = sessionStorage.getItem("id");
     const user = await getUser(winner_id);
     var score = sessionStorage.getItem("score");
-    document.getElementById("testo_end").innerHTML = "Congratulazioni "+user.name+ " hai vinto con uno score di: "+score;
+    var operaN = sessionStorage.getItem("operaN");
+    document.getElementById("testo_end").innerHTML = "Congratulations "+user.name+ " you won with a score of: "+score+ "ed hai indovinato" + operaN;
   }else{
-    document.getElementById("testo_end").innerHTML = "La partita è finita in parità";
+    document.getElementById("testo_end").innerHTML = "The game ended with a tie!";
   }
 
   createLeaderboard();
