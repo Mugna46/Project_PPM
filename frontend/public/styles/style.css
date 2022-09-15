@@ -67,11 +67,6 @@
     line-height: calc(100% + 0.5rem);
   }
   
-  .div_end {
-   padding: 20px;
-   margin: 150px;
-   background-color: white;
-  }
   
   .div_index, .div_signup {
     margin-top: 1rem ;
@@ -391,6 +386,9 @@
     display: flex;
     flex-direction: column;
     height: auto;
+    padding: 20px;
+    margin: 5% 30% 30% 30%;
+    background-color: white;
   }
 
   .buttonleader {
@@ -419,9 +417,9 @@
   .containerleaderboardend{
     display: none;
     position: absolute;
-    width: 41.6%;
+    width: 38%;
     height: 50%;
-    top: 300px;
+    top: 24%;
     border: 4px solid rgba(128, 0, 128, 0.664);
     border-radius: 25px;
     background-color: gray;
@@ -432,7 +430,7 @@
   /*Codice per adattamento a dispositivi di width <=1200px */
   @media only screen and (max-width: 1280px){
 
-    
+
     .round #name{
       padding-right: 20px;
     }
@@ -481,6 +479,8 @@
 
   /*Codice per adattamento a dispositivi di width <=500px */
   @media only screen and (max-width: 850px){
+
+   
 
     .logo{
       padding-left: 2px;
@@ -589,7 +589,7 @@
     }
 
     .div_end{
-      margin: 80px;
+      margin: 70px;
     }
 
     .containerleaderboardend{
