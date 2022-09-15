@@ -214,19 +214,19 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes =
           sessionStorage.setItem("id", user1_id);
           sessionStorage.setItem("score", score1);
           sessionStorage.setItem("tie", tie);
-          sessionStorage.setItem("operaN", operaN1);
+          sessionStorage.setItem("operaN", JSON.stringify(operaN1));
           sessionStorage.setItem("win1", win1);
         } else if (score1 == score2) {
           tie = true;
           sessionStorage.setItem("tie", tie)
-          sessionStorage.setItem("operaN1", operaN1);
-          sessionStorage.setItem("operaN2", operaN2);
+          sessionStorage.setItem("operaN1", JSON.stringify(operaN1));
+          sessionStorage.setItem("operaN2", JSON.stringify(operaN2));
         } else {
           win1 = false;
           sessionStorage.setItem("id", user2_id);
           sessionStorage.setItem("score", score2);
           sessionStorage.setItem("tie", tie);
-          sessionStorage.setItem("operaN", operaN2);
+          sessionStorage.setItem("operaN", JSON.stringify(operaN2));
           sessionStorage.setItem("win1", win1);
         }
         location.href = "end0.html"
