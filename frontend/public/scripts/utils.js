@@ -174,7 +174,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes = 2, seconds = 0, bool = true) => {
+export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes = 0, seconds = 30, bool = true) => {
 
   setInterval(async function () {
     if (bool == true) {
@@ -229,7 +229,7 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes =
           sessionStorage.setItem("operaN", operaN2);
           sessionStorage.setItem("win1", win1);
         }
-        location.href = "end.html"
+        location.href = "end0.html"
         bool = false;
       }
     }
@@ -292,8 +292,8 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
   let round = 0;
   let count_match = 0;
   let i = 0;
-  const operaN1 = [];
-  const operaN2 = [];
+  const operaN1 = new Array();
+  const operaN2 = new Array();
   const pictures_Array = new Array(); //Array delle immagini
   var start_timer = true;
 

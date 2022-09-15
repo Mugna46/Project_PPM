@@ -12,8 +12,7 @@ $(async () => {
     var winner_id = sessionStorage.getItem("id");
     const user = await getUser(winner_id);
     var score = sessionStorage.getItem("score");
-    var operaN = sessionStorage.getItem("operaN");
-    document.getElementById("testo_end").innerHTML = "Congratulations "+user.name+ " you won with a score of: "+score+ "ed hai indovinato" + operaN;
+    document.getElementById("testo_end").innerHTML = "Congratulations "+user.name+ " you won with a score of: "+score;
   }else{
     document.getElementById("testo_end").innerHTML = "The game ended with a tie!";
   }
