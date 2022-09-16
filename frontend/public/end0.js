@@ -1,10 +1,12 @@
 import { getUser} from "./scripts/fetchUtils.js";
+import { startFakeTimer } from "./scripts/utils.js";
 
 $(async () => {
 
     var check_tie = sessionStorage.getItem("tie");
 
     if(check_tie=="false"){
+        startFakeTimer();
         var winner_id = sessionStorage.getItem("id");
         const user = await getUser(winner_id);
         document.getElementById("testo-player0").innerHTML = "Player "+user.name+" you won!";
@@ -18,6 +20,4 @@ $(async () => {
             listname.appendChild(entryname);
         }
     }
-     
-    
   });

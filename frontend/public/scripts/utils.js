@@ -174,6 +174,21 @@ const queueGenerator = (size) => {
   };
 };
 
+export const startFakeTimer = async ( seconds = 15, bool = true) => {
+
+  setInterval(async function () {
+    if (bool == true) {
+      seconds--;
+      console.log(seconds);
+      //finisce timer
+      if (seconds == 0) {
+        location.href = "end.html";
+        bool = false;
+      }
+    }
+  }, 1000)
+}
+
 export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes = 0, seconds = 30, bool = true) => {
 
   setInterval(async function () {
