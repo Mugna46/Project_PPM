@@ -174,7 +174,7 @@ const queueGenerator = (size) => {
   };
 };
 
-export const startFakeTimer = async ( seconds = 15, bool = true) => {
+export const startFakeTimer = async (seconds = 15, bool = true) => {
 
   setInterval(async function () {
     if (bool == true) {
@@ -221,7 +221,7 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, webcam, m
         }
         var tie = false;
         var win1;
-        alert("The time is over!") 
+        alert("The time is over!")
         //Mettere nel database gli score dei giocatori 
         //con eventuale controllo se score >= di quello precedente
         if (score1 > score2) {
@@ -250,7 +250,7 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, webcam, m
           location.href = "end0.html";
           bool = false;
         }
-        
+
       }
     }
   }, 1000)
@@ -282,7 +282,7 @@ export const createLeaderboard = async () => {
         break;
       case 1:
         entryname.id = "podium2";
-        entryscore.id = "podium2";  
+        entryscore.id = "podium2";
         break;
       case 2:
         entryname.id = "podium3";
@@ -300,7 +300,7 @@ export const createLeaderboard = async () => {
 }
 
 
-export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, user2_id, webcam) => {
+export const initGame = async (levelId, video, camCanvas1, imgCanvas, canvas, user1_id, user2_id, webcam) => {
   $("#main").hide();
   const level = await getLevel(levelId);
   createLeaderboard();
@@ -335,7 +335,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
     const id = level.picture_ids[pictures_Array[i]];
     i++;
 
-    const { imageKPNames, distanceFromImg} = await pictureLoad(id);
+    const { imageKPNames, distanceFromImg } = await pictureLoad(id);
 
     const imgQueue = queueGenerator(Config.VIDEO_SECONDS * Config.FRAME_RATE);
 
@@ -371,6 +371,13 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
       $("#score").text(`${computedDistancePercentage}%`);
 
       camCanvas1.drawImage(video);
+
+      let context = canvas.getContext("2d");
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      let snap = canvas.toDataURL("image/jpg");
+      sessionStorage.setItem("screen", snap);
+
+
       document.getElementById("s1").innerHTML = score1;
       // secondo counter
       document.getElementById("s2").innerHTML = score2;

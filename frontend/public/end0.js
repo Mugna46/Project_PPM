@@ -5,14 +5,16 @@ $(async () => {
 
     //startFakeTimer();
     var check_tie = sessionStorage.getItem("tie");
-    //if(check_tie=="false"){
+    if(check_tie=="false"){
         const src = sessionStorage.getItem("screen"); 
         const canvas = document.getElementById("canvscreen");
+        canvas.width = 1024;
+        canvas.height = 1024;
         const ctx = canvas.getContext("2d");
         var image = new Image();
         image.src = src;
         image.addEventListener( "load", function(){
-        ctx.drawImage(image, 0, 0);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         });
         var winner_id = sessionStorage.getItem("id");
         const user = await getUser(winner_id);
@@ -26,5 +28,5 @@ $(async () => {
             entryname.appendChild(document.createTextNode(operaN[i]));
             listname.appendChild(entryname);
         }
-    //}
+    }
   });
