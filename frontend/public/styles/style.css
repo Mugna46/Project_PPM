@@ -378,12 +378,14 @@
     border-left: none;
   }
 
+
   /*Styles for end0.html*/
 
   .bigc{
     margin: 60px 110px 110px 110px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
   }
 
   .winner{
@@ -417,6 +419,11 @@
   }
 
   .screen-player img{
+    width: 100%;
+    height: auto;
+  }
+
+  #canvscreen {
     width: 100%;
     height: auto;
   }

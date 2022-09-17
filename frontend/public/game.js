@@ -8,19 +8,22 @@ $(async () => {
   const userlist2 = await getUser(id2);
   document.getElementById("p1").innerHTML = userlist1.name;
   document.getElementById("p2").innerHTML = userlist2.name;
-  const video = document.getElementById("video");
+  let canvas = document.createElement("canvas")
+  canvas.width=1024;
+  canvas.height=1024;
+  const video = $("#video").get(0);
   const webcam = new Webcam(video, "user");
-  webcam.stream();
+  await webcam.stream();
+
+ 
   const camCanvas1 = createPoseCanvas($("#camCanvas1").get(0));
   const imgCanvas = createPoseCanvas($("#imgCanvas").get(0));
 
-  
-  
   const queryParams = new URLSearchParams(window.location.search);
 
   const levelId = queryParams.get("id");
 
 
-  initGame(levelId, video, camCanvas1, imgCanvas, id1, id2);
+  initGame(levelId, video, camCanvas1, imgCanvas, canvas, id1, id2);
 });
 
