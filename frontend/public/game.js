@@ -8,9 +8,17 @@ $(async () => {
   const userlist2 = await getUser(id2);
   document.getElementById("p1").innerHTML = userlist1.name;
   document.getElementById("p2").innerHTML = userlist2.name;
-  const video = document.getElementById("video");
+  const canvas = document.getElementById("camCanvas");
+  const video = $("#video").get(0);
   const webcam = new Webcam(video, "user");
-  webcam.stream();
+  await webcam.stream();
+
+  let context = canvas.getContext("2d");
+  context.drawImage(video, 0, 0, 1024, 1024);
+  const snap = canvas.toDataURL();
+  sessionStorage.setItem("screen", snap);
+
+ 
   const camCanvas1 = createPoseCanvas($("#camCanvas1").get(0));
   const imgCanvas = createPoseCanvas($("#imgCanvas").get(0));
 

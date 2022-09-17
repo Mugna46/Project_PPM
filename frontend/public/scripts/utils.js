@@ -189,7 +189,7 @@ export const startFakeTimer = async ( seconds = 15, bool = true) => {
   }, 1000)
 }
 
-export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes = 0, seconds = 30, bool = true) => {
+export const startTimer = async (user1_id, user2_id, operaN1, operaN2, webcam, minutes = 0, seconds = 30, bool = true) => {
 
   setInterval(async function () {
     if (bool == true) {
@@ -231,11 +231,15 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes =
           sessionStorage.setItem("tie", tie);
           sessionStorage.setItem("operaN", JSON.stringify(operaN1));
           sessionStorage.setItem("win1", win1);
+          location.href = "end0.html";
+          bool = false;
         } else if (score1 == score2) {
           tie = true;
           sessionStorage.setItem("tie", tie)
           sessionStorage.setItem("operaN1", JSON.stringify(operaN1));
           sessionStorage.setItem("operaN2", JSON.stringify(operaN2));
+          location.href = "end0.html"
+          bool = false;
         } else {
           win1 = false;
           sessionStorage.setItem("id", user2_id);
@@ -243,9 +247,10 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, minutes =
           sessionStorage.setItem("tie", tie);
           sessionStorage.setItem("operaN", JSON.stringify(operaN2));
           sessionStorage.setItem("win1", win1);
+          location.href = "end0.html";
+          bool = false;
         }
-        location.href = "end0.html"
-        bool = false;
+        
       }
     }
   }, 1000)
@@ -295,7 +300,7 @@ export const createLeaderboard = async () => {
 }
 
 
-export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, user2_id) => {
+export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, user2_id, webcam) => {
   $("#main").hide();
   const level = await getLevel(levelId);
   createLeaderboard();
@@ -417,7 +422,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, user1_id, 
           document.getElementById("nround").innerHTML = round;
 
           if (start_timer == true && round > 0) {
-            startTimer(user1_id, user2_id, operaN1, operaN2);
+            startTimer(user1_id, user2_id, operaN1, operaN2, webcam);
             start_timer = false;
           }
 
