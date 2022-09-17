@@ -50,18 +50,22 @@ $(async () => {
         var operaN2 = JSON.parse(operaNstring2);
         let listname1 = document.getElementById("testo_pose_fatte1");
         let listname2 = document.getElementById("testo_pose_fatte2");
-        for (let i = 0; i < operaN.length; i++) {
-            var entryname1 = document.createElement("li");
-            var entryname2 = document.createElement("li");
-            entryname1.className = "list-group-item";
-            entryname2.className = "list-group-item";
-            entryname1.appendChild(document.createTextNode(operaN2[i]));
-            entryname2.appendChild(document.createTextNode(operaN1[i]));
-            listname1.appendChild(entryname1);
-            listname2.appendChild(entryname2);  
+        for (let i = 0; i < operaN1.length; i++) {
+            var entryname = document.createElement("li");
+            entryname.className = "list-group-item";
+            entryname.id = "list_end";
+            entryname.appendChild(document.createTextNode(operaN1[i]));
+            listname2.appendChild(entryname);  
         }
-        image.addEventListener("load", function () {
-            ctx.drawImage(image, 0, 0, canvas.width , canvas.height);
-        });
+        for (let i = 0; i < operaN2.length; i++) {
+            var entryname = document.createElement("li");
+            entryname.className = "list-group-item";
+            entryname.id = "list_end";
+            entryname.appendChild(document.createTextNode(operaN2[i]));
+            listname1.appendChild(entryname);  
+        }
+        
+        ctx.drawImage(image, 0, 0);
+        
     }
 });
