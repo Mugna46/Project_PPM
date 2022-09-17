@@ -62,8 +62,8 @@ CREATE TABLE `picture` (
 --
 
 INSERT INTO `picture` (`id`, `path`, `level_id`, `name`, `description`) VALUES
-(1, "\\static\\assets\\id2.jpeg", 1, "f", "Giocatore 1 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
-(2, "\\static\\assets\\id2.jpeg", 1, "f", "Giocatore 2 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
+(1, "\\static\\assets\\id1.jpg", 1, "f", "Giocatore 1 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
+(2, "\\static\\assets\\id2.jpg", 1, "f", "Giocatore 2 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
 (3, '\\static\\assets\\img0.jpeg', 1, "San Giovanni Battista", "San Giovanni Battista, Leonardo Da Vinci. Il giovane con la mano destra indica la Croce che tiene in mano e il cielo, invitando l'osservatore a una meditazione sulla venuta di Cristo."),
 (4, '\\static\\assets\\img1.jpeg', 1, "La Nascita di Venere", "La Nascita di Venere, Sandro Botticelli. La posa della dea, deriva dal modello classico della Venus pudica (cioè che si copre con le braccia il seno e il basso ventre) e Anadiomene (cioè 'emergente' o nascente dalla spuma marina)."),
 (5, '\\static\\assets\\img2.jpeg', 1, "Jeanne Hébuterne", "Jeanne Hébuterne, Modigliani. Il quadro è un ritratto di Jeanne Hébuterne, una donna che ebbe un'intensa relazione sentimentale con l'artista, è ritratta seduta con le braccia stese in una posa di totale naturalezza."),

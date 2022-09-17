@@ -5,7 +5,7 @@ export class Config {
     static HEIGHT = 1024;
     static FRAME_RATE = 20;
     static VIDEO_SECONDS = 3;
-    static MATCH_LEVEL = 0.3;
+    static MATCH_LEVEL = 0.7;
     static DEBUG = true;
   }
   
