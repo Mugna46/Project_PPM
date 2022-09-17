@@ -15,14 +15,12 @@ $(async () => {
   const webcam = new Webcam(video, "user");
   await webcam.stream();
 
- 
   const camCanvas1 = createPoseCanvas($("#camCanvas1").get(0));
   const imgCanvas = createPoseCanvas($("#imgCanvas").get(0));
 
   const queryParams = new URLSearchParams(window.location.search);
 
   const levelId = queryParams.get("id");
-
 
   initGame(levelId, video, camCanvas1, imgCanvas, canvas, id1, id2);
 });

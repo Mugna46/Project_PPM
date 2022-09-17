@@ -189,7 +189,7 @@ export const startFakeTimer = async (seconds = 15, bool = true) => {
   }, 1000)
 }
 
-export const startTimer = async (user1_id, user2_id, operaN1, operaN2, webcam, minutes = 0, seconds = 30, bool = true) => {
+export const startTimer = async (user1_id, user2_id, operaN1, operaN2, canvas, minutes = 0, seconds = 30, bool = true) => {
 
   setInterval(async function () {
     if (bool == true) {
@@ -221,6 +221,10 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, webcam, m
         }
         var tie = false;
         var win1;
+        let context = canvas.getContext("2d");
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        let snap = canvas.toDataURL("image/jpg");
+        sessionStorage.setItem("screen", snap);
         alert("The time is over!")
         //Mettere nel database gli score dei giocatori 
         //con eventuale controllo se score >= di quello precedente
@@ -238,6 +242,8 @@ export const startTimer = async (user1_id, user2_id, operaN1, operaN2, webcam, m
           sessionStorage.setItem("tie", tie)
           sessionStorage.setItem("operaN1", JSON.stringify(operaN1));
           sessionStorage.setItem("operaN2", JSON.stringify(operaN2));
+          sessionStorage.setItem("id1", user1_id);
+          sessionStorage.setItem("id2", user2_id);
           location.href = "end0.html"
           bool = false;
         } else {
@@ -372,11 +378,6 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, canvas, us
 
       camCanvas1.drawImage(video);
 
-      let context = canvas.getContext("2d");
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      let snap = canvas.toDataURL("image/jpg");
-      sessionStorage.setItem("screen", snap);
-
 
       document.getElementById("s1").innerHTML = score1;
       // secondo counter
@@ -429,7 +430,7 @@ export const initGame = async (levelId, video, camCanvas1, imgCanvas, canvas, us
           document.getElementById("nround").innerHTML = round;
 
           if (start_timer == true && round > 0) {
-            startTimer(user1_id, user2_id, operaN1, operaN2, webcam);
+            startTimer(user1_id, user2_id, operaN1, operaN2, canvas);
             start_timer = false;
           }
 
