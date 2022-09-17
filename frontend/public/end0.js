@@ -5,7 +5,7 @@ $(async () => {
 
     //startFakeTimer();
     var check_tie = sessionStorage.getItem("tie");
-    if(check_tie=="false"){
+    //if(check_tie=="false"){
         const src = sessionStorage.getItem("screen"); 
         const canvas = document.getElementById("canvscreen");
         canvas.width = 1024;
@@ -28,5 +28,5 @@ $(async () => {
             entryname.appendChild(document.createTextNode(operaN[i]));
             listname.appendChild(entryname);
         }
-    }
+    //}
   });
