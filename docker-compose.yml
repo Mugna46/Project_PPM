@@ -44,8 +44,6 @@ services:
       - AUDIT_CONTROL
       - AUDIT_READ
       - BLOCK_SUSPEND
-      - BPF
-      - CHECKPOINT_RESTORE
       - DAC_READ_SEARCH
       - IPC_LOCK
       - IPC_OWNER
@@ -54,7 +52,6 @@ services:
       - MAC_OVERRIDE
       - NET_ADMIN
       - NET_BROADCAST
-      - PERFMON
       - SYS_ADMIN
       - SYS_BOOT
       - SYS_MODULE
