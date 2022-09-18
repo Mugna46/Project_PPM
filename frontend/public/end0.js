@@ -33,6 +33,7 @@ $(async () => {
         for (let i = 0; i < operaN.length; i++) {
             var entryname = document.createElement("li");
             entryname.className = "list-group-item";
+            entryname.id = "list_end";
             entryname.appendChild(document.createTextNode(operaN[i]));
             listname.appendChild(entryname);
         }
