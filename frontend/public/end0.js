@@ -3,7 +3,7 @@ import { startFakeTimer } from "./scripts/utils.js";
 
 $(async () => {
 
-    //startFakeTimer();
+    startFakeTimer();
     var check_tie = sessionStorage.getItem("tie");
     const src = sessionStorage.getItem("screen");
     const canvas = document.getElementById("canvscreen");
