@@ -189,7 +189,7 @@ export const startFakeTimer = async (seconds = 15, bool = true) => {
   }, 1000)
 }
 
-export const startTimer = async (user1_id, user2_id, operaN1, operaN2, canvas, minutes = 2, seconds = 30, bool = true) => {
+export const startTimer = async (user1_id, user2_id, operaN1, operaN2, canvas, minutes = 0, seconds = 30, bool = true) => {
 
   setInterval(async function () {
     if (bool == true) {

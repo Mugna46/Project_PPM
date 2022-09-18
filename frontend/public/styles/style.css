@@ -29,6 +29,10 @@
   .card-body{
     text-align: center;
   }
+
+  .card-text{
+    font-weight: 550;
+  }
   
   .div_end #final_title {
     color:#FF5733;
@@ -62,9 +66,9 @@
     background-color: white;
     padding: 1rem;
     font-size: 27px;
-    font-family: Helvetica, sans-serif;
     text-align: center;
     line-height: calc(100% + 0.5rem);
+    font-weight: 550;
   }
   
   
@@ -419,11 +423,13 @@
   .txt-pose{
     text-align: center;
     font-size: 18px;
+    font-weight: 550;
+    padding-top: 8px;
   }
 
   .text-end0{
     max-width: 30%;
-    background-color: #ea8853;
+    background-color: #ff7b53;
     border-radius: 10px;
   }
 
@@ -502,10 +508,20 @@
     align-self: center;
   }
 
+   #bootstrap-override #list_end{
+    margin-left: 5px;
+    margin-right: 5px;
+    box-shadow: none;
+    background-color: whitesmoke;
+  }
+
 
   /*Codice per adattamento a dispositivi di width <=1200px */
   @media only screen and (max-width: 1280px){
 
+    .firstcounter, .secondcounter{
+      box-shadow: none;
+    }
 
     .round #name{
       padding-right: 20px;
@@ -625,6 +641,7 @@
 
     .div_end #testo_end {
       font-size: 23px;
+      
     }
 
     .timer-container{
