@@ -62,9 +62,9 @@ CREATE TABLE `picture` (
 --
 
 INSERT INTO `picture` (`id`, `path`, `level_id`, `name`, `description`) VALUES
-(1, "\\static\\assets\\id2.jpg", 1, "f", "Giocatore 1 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
+(1, "\\static\\assets\\id2.jpg", 1, "f", "Player 1 position yourself in front of the webcam under your name and when you are ready replicate the pose."),
 
-(2, "\\static\\assets\\id1.jpg", 1, "f", "Giocatore 2 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
+(2, "\\static\\assets\\id1.jpg", 1, "f", "Player 2 position yourself in front of the webcam under your name and when you are ready replicate the pose."),
 
 (3, '\\static\\assets\\img0.jpeg', 1, "San Giovanni Battista", "San Giovanni Battista; Leonardo Da Vinci. The young man with his right hand points at the crucifix he is holding and at the sky, inviting the observer to a meditation on the coming of Christ."),
 
