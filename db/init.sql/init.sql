@@ -80,7 +80,7 @@ INSERT INTO `picture` (`id`, `path`, `level_id`, `name`, `description`) VALUES
 
 (9, '\\static\\assets\\img14.jpeg', 1, "Statue of Liberty", "Statua della libertà, Gustave Eiffel, Maurice Koechlin. The left arm is bent towards the body so that it can hold up a table. However the right one, exposed, is raised and holds a torch lit to witness freedom and justice."),
 
-(10, '\\static\\assets\\img12.jpeg', 1, "Girl Arranging Her Hair", "Girl Arranging Her Hair; Mary Cassatt. The frame portrays a young girl in petticoats, with her elbow raised and her face slightly facing up, whilst arranging her pigtail."),
+(10, '\\static\\assets\\img18.jpeg', 1, "Perseus with the Head of Medusa", "Perseus with the Head of Medusa; Benvenuto Cellini. The hero stands in a graceful and elegant pose; he is depicted standing. With his right hand clutches the hilt of his saber and with his left lifts the Medusa's head."),
 
 (11, '\\static\\assets\\img17.jpeg', 1, "Discobolus", "Discobolus; Mirone. The athlete in his right hand wields the disk and seems caught in the moment when he is about to make a strong rotation before hurling it. The left arm is resting almost vertically on the right knee."),
 
@@ -92,15 +92,15 @@ INSERT INTO `picture` (`id`, `path`, `level_id`, `name`, `description`) VALUES
 
 (15, '\\static\\assets\\img7.jpeg', 1, "Portrait of Lorenzo the Magnificent", "Portrait of Lorenzo the Magnificent; Giorgio Vasari. Lorenzo's pose mirrors that of Pontormo's portrait by Cosimo the Elder, the bust is rotated towards the viewer and is elongated."),
 
-(16, '\\static\\assets\\img18.jpeg', 1, "Perseus with the Head of Medusa", "Perseus with the Head of Medusa; Benvenuto Cellini. The hero stands in a graceful and elegant pose; he is depicted standing. With his right hand clutches the hilt of his saber and with his left lifts the Medusa's head."),
+(16, '\\static\\assets\\img9.jpeg', 1, "Garçon à la Pipe", "Garçon à la Pipe; Pablo Picasso. The protagonist is a young man who has a tobacco pipe in his hands, while looking at the spectator he is resting on the ground with his legs slightly separated, with an ornate wall behind him."),
 
-(17, '\\static\\assets\\img9.jpeg', 1, "Garçon à la Pipe", "Garçon à la Pipe; Pablo Picasso. The protagonist is a young man who has a tobacco pipe in his hands, while looking at the spectator he is resting on the ground with his legs slightly separated, with an ornate wall behind him."),
+(17, '\\static\\assets\\img10.jpeg', 1, "Boy Peeling Fruit", "Boy Peeling Fruit (italian: Ragazzo che monda un frutto); Caravaggio. The work represents a young boy intent on peeling an unidentified fruit, he seems to be sitting and has both elbows on the table."),
 
-(18, '\\static\\assets\\img10.jpeg', 1, "Boy Peeling Fruit", "Boy Peeling Fruit (italian: Ragazzo che monda un frutto); Caravaggio. The work represents a young boy intent on peeling an unidentified fruit, he seems to be sitting and has both elbows on the table."),
+(18, '\\static\\assets\\img15.jpeg', 1, "Vittoria alata di Brescia", "Vittoria alata di Brescia; Maestro Greco (rielaborated after in the Roman imperial period). The posture is now incomplete due to the loss of some elements; the left foot rested on a helmet, the left arm held a shield."),
 
-(19, '\\static\\assets\\img15.jpeg', 1, "Vittoria alata di Brescia", "Vittoria alata di Brescia; Maestro Greco (rielaborated after in the Roman imperial period). The posture is now incomplete due to the loss of some elements; the left foot rested on a helmet, the left arm held a shield."),
+(19, '\\static\\assets\\img11.jpeg', 1, "Portrait of Maria Antonietta with a rose", "Portrait of Maria Antonietta with a rose; Élisabeth Vigée Le Brun. The pose depicted is rigid, the queen holds in her hands, in the foreground, a small bouquet of wildflowers, constrained in a light ribbon."),
 
-(20, '\\static\\assets\\img11.jpeg', 1, "Portrait of Maria Antonietta with a rose", "Portrait of Maria Antonietta with a rose; Élisabeth Vigée Le Brun. The pose depicted is rigid, the queen holds in her hands, in the foreground, a small bouquet of wildflowers, constrained in a light ribbon."),
+(20, '\\static\\assets\\img12.jpeg', 1, "Girl Arranging Her Hair", "Girl Arranging Her Hair; Mary Cassatt. The frame portrays a young girl in petticoats, with her elbow raised and her face slightly facing up, whilst arranging her pigtail."),
 
 (21, '\\static\\assets\\img4.jpeg', 1, "Portrait of Agnolo Doni", "Portrait of Agnolo Doni; Raffaello Sanzio. It is considered a prototype of a natural portrait due to Agnolo Doni's casual pose, which, however, does not deprive the image of monumentality.");
 
