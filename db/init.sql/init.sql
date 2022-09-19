@@ -41,8 +41,8 @@ CREATE TABLE `level` (
 --
 
 INSERT INTO `level` (`id`, `name`, `description`) 
-VALUES (1, "Partita 1 vs 1", "Due giocatori dovranno sfidarsi cercando di replicare la posa dell\'opera\r\nd\'arte.");
-
+VALUES (1, "Partita 1 vs 1", "Two players will have to challenge each other trying to replicate the pose of the artwork");
+--
 -- --------------------------------------------------------
 
 --
@@ -63,26 +63,46 @@ CREATE TABLE `picture` (
 
 INSERT INTO `picture` (`id`, `path`, `level_id`, `name`, `description`) VALUES
 (1, "\\static\\assets\\id2.jpg", 1, "f", "Giocatore 1 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
+
 (2, "\\static\\assets\\id1.jpg", 1, "f", "Giocatore 2 posizionati davanti alla webcam in modo che siano visibili entrambe le braccia allungate e il corpo dal busto in su. Resta nella stessa posizione durante la partita e repilca poi la posa sopra raffigurata."),
-(3, '\\static\\assets\\img0.jpeg', 1, "San Giovanni Battista", "San Giovanni Battista, Leonardo Da Vinci. Il giovane con la mano destra indica la Croce che tiene in mano e il cielo, invitando l'osservatore a una meditazione sulla venuta di Cristo."),
-(4, '\\static\\assets\\img1.jpeg', 1, "La Nascita di Venere", "La Nascita di Venere, Sandro Botticelli. La posa della dea, deriva dal modello classico della Venus pudica (cioè che si copre con le braccia il seno e il basso ventre) e Anadiomene (cioè 'emergente' o nascente dalla spuma marina)."),
-(5, '\\static\\assets\\img19.jpg', 1, "Cristo Redentore", "Cristo Redentore, Paul Landowski, Gheorghe Leonida, Heitor da Silva Costa, Albert Irenée Caquot. Il Cristo Redentore di Rio raffigura Gesù Cristo a braccia aperte e tese che abbraccia in un gesto ideale l’intera città di Rio de Janeiro."),
-(6, '\\static\\assets\\img2.jpeg', 1, "Jeanne Hébuterne", "Jeanne Hébuterne, Modigliani. Il quadro è un ritratto di Jeanne Hébuterne, una donna che ebbe un'intensa relazione sentimentale con l'artista, è ritratta seduta con le braccia stese in una posa di totale naturalezza."),
-(7, '\\static\\assets\\img16.jpeg', 1, "Afrodite di Capua", "Afrodite di Capua, Lisippo (restaurata nel 1820 da Augusto Brunelli). Ritratta seminuda ed avvolta, a partire dalla vita, soltanto da un himation, la Venere presenta straordinaria plasticità delle forme ed eleganza nel movimento. "),
-(8, '\\static\\assets\\img3.jpeg', 1, "La Gioconda", "La Gioconda, Leonardo da Vinci. La donna è inquadrata di tre quarti, col busto leggermente girato verso la sua destra. Le mani sono incrociate in primo piano e con le braccia si appoggia a quello che sembra il bracciolo di una sedia."),
-(9, '\\static\\assets\\img14.jpeg', 1, "Statua della libertà", "Statua della libertà, Gustave Eiffel, Maurice Koechlin. Il braccio sinistro è piegato verso il corpo a sostenere una tavola, invece il destro, nudo, è sollevato e sostiene una fiaccola accesa a testimoniare libertà e giustizia."),
-(10, '\\static\\assets\\img12.jpeg', 1, "Bambina che si sistema i capelli", "Bambina che si sistema i capelli, Mary Cassatt. Il dipinto ritrae una giovane in sottoveste, con il gomito alzato ed il viso leggermente rivolto verso l'alto, mentre si sistema i capelli in una treccia."),
-(11, '\\static\\assets\\img17.jpeg', 1, "Discobolo", "Discobolo, Mirone. L’atleta impugna il disco nella mano destra e sembra colto nel momento in cui si appresta a compiere una forte rotazione prima di scagliarlo. Il braccio sinistro è appoggiato quasi verticalmente al ginocchio destro."),
-(12, '\\static\\assets\\img20.jpg', 1, "Il pensatore", "Il pensatore, Auguste Rodin. Il pensatore doveva raffigurare Dante davanti alle porte dell'Inferno, mentre medita sul suo grande poema, la statua è nuda, poiché Rodin voleva una figura eroica di stampo michelangiolesco."),
-(13, '\\static\\assets\\img5.jpeg', 1, "La Dama con l'ermellino", "La Dama con l'ermellino, Leonardo da Vinci. La protagonista del ritratto posa con il busto rivolto a sinistra mentre il viso è orientato a destra. Tra le braccia stringe un ermellino e mostra un'espressione serena ma determinata."),
-(14, '\\static\\assets\\img6.jpeg', 1, "La Maddalena penitente", "La Maddalena penitente (Napoli), Tiziano. La posa raffigura la santa che si rivolge direttamente a Dio alzando lo sguardo verso il cielo e toccandosi una spalla con la mano destra con una veste molto semplice."),
-(15, '\\static\\assets\\img7.jpeg', 1, "Il Ritratto di Lorenzo il Magnifico", "Il Ritratto di Lorenzo il Magnifico, Giorgio Vasari. La posa di Lorenzo è speculare a quella del ritratto di Cosimo il Vecchio del Pontormo, il busto è ruotato verso lo spettatore ed è allungato."),
-(16, '\\static\\assets\\img18.jpeg', 1, "Perseo con la testa di Medusa", "Perseo con la testa di Medusa, Benvenuto Cellini. L’eroe si erge in una posa aggraziata ed elegante, è raffigurato in piedi. Con la mano destra stringe l’impugnatura della sciabola e con la sinistra solleva la testa di Medusa."),
-(17, '\\static\\assets\\img9.jpeg', 1, "Ragazzo con pipa", "Ragazzo con pipa, Pablo Picasso. Il protagonista è un giovane uomo che ha tra le mani una pipa, mentre guarda lo spettatore è appoggiato a terra con le gambe lievemente divaricate, con alle spalle un muro decorato."),
-(18, '\\static\\assets\\img10.jpeg', 1, "Ragazzo che monda un frutto", "Ragazzo che monda un frutto, Caravaggio. L'opera rappresenta un giovane ragazzo intento a sbucciare un frutto non ben identificato, sembra essere seduto ed ha entrambi i gomiti sopra la tavola."),
-(19, '\\static\\assets\\img15.jpeg', 1, "Vittoria alata di Brescia", "Vittoria alata di Brescia, Maestro Greco (poi rielaborata in età romana imperiale). La postura è oggi incompleta per la perdita di alcuni elementi; il piede sinistro poggiava su un elmo, il braccio sinistro tratteneva uno scudo."),
-(20, '\\static\\assets\\img11.jpeg', 1, "Ritratto di Maria Antonietta con la rosa", "Ritratto di Maria Antonietta con la rosa, Élisabeth Vigée Le Brun. La posa raffigurata è rigida, la regina ha tra le mani, in primo piano, un piccolo mazzo di fiori di campo, costretto in un nastrino chiaro."),
-(21, '\\static\\assets\\img4.jpeg', 1, "Il Ritratto di Agnolo Doni", "Il Ritratto di Agnolo Doni, Raffaello Sanzio. Viene considerato un prototipo di ritratto naturale per via della posa disinvolta di Agnolo Doni, che non priva però l’immagine di monumentalità.");
+
+(3, '\\static\\assets\\img0.jpeg', 1, "San Giovanni Battista", "San Giovanni Battista; Leonardo Da Vinci. The young man with his right hand points at the crucifix he is holding and at the sky, inviting the observer to a meditation on the coming of Christ."),
+
+(4, '\\static\\assets\\img1.jpeg', 1, "The Birth of Venus", "The Birth of Venus; Sandro Botticelli. The goddess pose, comes from the classic style of 'Venus pudica' (i.e.  she cover her breasts and womb with her arms) and Anadyomene (i.e. 'emerging' or rising from the sea foam)."),
+
+(5, '\\static\\assets\\img19.jpg', 1, "Christ the Redeemer", "Christ the Redeemer; Paul Landowski, Gheorghe Leonida, Heitor da Silva Costa, Albert Irenée Caquot. Christ the Redeemer of Rio represents Jesus Christ embracing in an ideal gesture the  entire city of Rio de Janeiro with open and outstretched arms."),
+
+(6, '\\static\\assets\\img2.jpeg', 1, "Jeanne Hébuterne", "Jeanne Hébuterne; Modigliani. The frame portraits Jeanne Hébuterne, a woman who had an intense romantic relationship with the artist, she is portrayed sitting with her arms outstretched in a pose of total naturalness."),
+
+(7, '\\static\\assets\\img16.jpeg', 1, "Capuan Venus", "Capuan Venus; Lisippo (restored in 1820 by Augusto Brunelli). Portrayed half-naked and wrapped, starting at the waist, only by a himation, the Venus presents extraordinary plasticity of form and elegance in movement. "),
+
+(8, '\\static\\assets\\img3.jpeg', 1, "Mona Lisa", "Mona Lisa (italian: Gioconda); Leonardo da Vinci. The woman is framed by three quartes, with her bust slightly turned to her right. The hands are crossed in the foreground, and with her arm she leans against a what looks like the armrest of a chair."),
+
+(9, '\\static\\assets\\img14.jpeg', 1, "Statue of Liberty", "Statua della libertà, Gustave Eiffel, Maurice Koechlin. Il braccio sinistro è piegato verso il corpo a sostenere una tavola, invece il destro, nudo, è sollevato e sostiene una fiaccola accesa a testimoniare libertà e giustizia."),
+
+(10, '\\static\\assets\\img12.jpeg', 1, "Girl Arranging Her Hair", "Girl Arranging Her Hair; Mary Cassatt. The frame portrays a young girl in petticoats, with her elbow raised and her face slightly facing up, whilst arranging her pigtail."),
+
+(11, '\\static\\assets\\img17.jpeg', 1, "Discobolus", "Discobolus; Mirone. The athlete in his right hand wields the disk and seems caught in the moment when he is about to make a strong rotation before hurling it. The left arm is resting almost vertically on the right knee."),
+
+(12, '\\static\\assets\\img20.jpg', 1, "The Thinker", "The Thinker; Auguste Rodin. The thinker had to portray Dante in front of the gates of Hell, while meditating on his great poem, the statue is naked, as Rodin wanted a heroic figure of Michelangelo style."),
+
+(13, '\\static\\assets\\img5.jpeg', 1, "Lady with an Ermine", "Lady with an Ermine; Leonardo da Vinci. The main character of the portrait poses with her bust turned to the left while her face is facing right. In her arms she hold an ermine which shows a serene but determined expression."),
+
+(14, '\\static\\assets\\img6.jpeg', 1, "Penitent Magdalene", "Penitent Magdalene (Napoli); Tiziano. The pose depicts the saint addressing God directly by looking up to heaven and touching one shoulder with her right hand in a very simple robe."),
+
+(15, '\\static\\assets\\img7.jpeg', 1, "Portrait of Lorenzo the Magnificent", "Portrait of Lorenzo the Magnificent; Giorgio Vasari. Lorenzo's pose mirrors that of Pontormo's portrait by Cosimo the Elder, the bust is rotated towards the viewer and is elongated."),
+
+(16, '\\static\\assets\\img18.jpeg', 1, "Perseus with the Head of Medusa", "Perseus with the Head of Medusa; Benvenuto Cellini. L’eroe si erge in una posa aggraziata ed elegante, è raffigurato in piedi. Con la mano destra stringe l’impugnatura della sciabola e con la sinistra solleva la testa di Medusa."),
+
+(17, '\\static\\assets\\img9.jpeg', 1, "Garçon à la Pipe", "Garçon à la Pipe; Pablo Picasso. Il protagonista è un giovane uomo che ha tra le mani una pipa, mentre guarda lo spettatore è appoggiato a terra con le gambe lievemente divaricate, con alle spalle un muro decorato."),
+
+(18, '\\static\\assets\\img10.jpeg', 1, "Boy Peeling Fruit", "Boy Peeling Fruit (italian: Ragazzo che monda un frutto); Caravaggio. The work represents a young boy intent on peeling an unidentified fruit, he seems to be sitting and has both elbows on the table."),
+
+(19, '\\static\\assets\\img15.jpeg', 1, "Vittoria alata di Brescia", "Vittoria alata di Brescia; Maestro Greco (rielaborated after in the Roman imperial period). The posture is now incomplete due to the loss of some elements; the left foot rested on a helmet, the left arm held a shield."),
+
+(20, '\\static\\assets\\img11.jpeg', 1, "Portrait of Maria Antonietta with a rose", "Portrait of Maria Antonietta with a rose; Élisabeth Vigée Le Brun. The pose depicted is rigid, the queen holds in her hands, in the foreground, a small bouquet of wildflowers, constrained in a light ribbon."),
+
+(21, '\\static\\assets\\img4.jpeg', 1, "Portrait of Agnolo Doni", "Portrait of Agnolo Doni; Raffaello Sanzio. It is considered a prototype of a natural portrait due to Agnolo Doni's casual pose, which, however, does not deprive the image of monumentality.");
 
 -- --------------------------------------------------------
 
