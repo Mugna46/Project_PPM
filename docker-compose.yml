@@ -37,7 +37,7 @@ services:
       - database  
 
   db:
-    image: mysql:8.0.30
+    image: mysql:5.7
     cap_add:
       - SYS_NICE
       - MAC_ADMIN

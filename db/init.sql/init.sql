@@ -34,7 +34,7 @@ CREATE TABLE `level` (
   `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `level`
@@ -55,7 +55,7 @@ CREATE TABLE `picture` (
   `level_id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `picture`
@@ -116,7 +116,7 @@ CREATE TABLE `user` (
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `score` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Indexes for dumped tables
