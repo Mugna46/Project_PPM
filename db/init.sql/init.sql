@@ -78,7 +78,7 @@ INSERT INTO `picture` (`id`, `path`, `level_id`, `name`, `description`) VALUES
 
 (8, '\\static\\assets\\img3.jpeg', 1, "Mona Lisa", "Mona Lisa (italian: Gioconda); Leonardo da Vinci. The woman is framed by three quartes, with her bust slightly turned to her right. The hands are crossed in the foreground, and with her arm she leans against a what looks like the armrest of a chair."),
 
-(9, '\\static\\assets\\img14.jpeg', 1, "Statue of Liberty", "Statua della libertà, Gustave Eiffel, Maurice Koechlin. Il braccio sinistro è piegato verso il corpo a sostenere una tavola, invece il destro, nudo, è sollevato e sostiene una fiaccola accesa a testimoniare libertà e giustizia."),
+(9, '\\static\\assets\\img14.jpeg', 1, "Statue of Liberty", "Statua della libertà, Gustave Eiffel, Maurice Koechlin. The left arm is bent towards the body so that it can hold up a table. However the right one, exposed, is raised and holds a torch lit to witness freedom and justice."),
 
 (10, '\\static\\assets\\img12.jpeg', 1, "Girl Arranging Her Hair", "Girl Arranging Her Hair; Mary Cassatt. The frame portrays a young girl in petticoats, with her elbow raised and her face slightly facing up, whilst arranging her pigtail."),
 
@@ -92,9 +92,9 @@ INSERT INTO `picture` (`id`, `path`, `level_id`, `name`, `description`) VALUES
 
 (15, '\\static\\assets\\img7.jpeg', 1, "Portrait of Lorenzo the Magnificent", "Portrait of Lorenzo the Magnificent; Giorgio Vasari. Lorenzo's pose mirrors that of Pontormo's portrait by Cosimo the Elder, the bust is rotated towards the viewer and is elongated."),
 
-(16, '\\static\\assets\\img18.jpeg', 1, "Perseus with the Head of Medusa", "Perseus with the Head of Medusa; Benvenuto Cellini. L’eroe si erge in una posa aggraziata ed elegante, è raffigurato in piedi. Con la mano destra stringe l’impugnatura della sciabola e con la sinistra solleva la testa di Medusa."),
+(16, '\\static\\assets\\img18.jpeg', 1, "Perseus with the Head of Medusa", "Perseus with the Head of Medusa; Benvenuto Cellini. The hero stands in a graceful and elegant pose; he is depicted standing. With his right hand clutches the hilt of his saber and with his left lifts the Medusa's head."),
 
-(17, '\\static\\assets\\img9.jpeg', 1, "Garçon à la Pipe", "Garçon à la Pipe; Pablo Picasso. Il protagonista è un giovane uomo che ha tra le mani una pipa, mentre guarda lo spettatore è appoggiato a terra con le gambe lievemente divaricate, con alle spalle un muro decorato."),
+(17, '\\static\\assets\\img9.jpeg', 1, "Garçon à la Pipe", "Garçon à la Pipe; Pablo Picasso. The protagonist is a young man who has a tobacco pipe in his hands, while looking at the spectator he is resting on the ground with his legs slightly separated, with an ornate wall behind him."),
 
 (18, '\\static\\assets\\img10.jpeg', 1, "Boy Peeling Fruit", "Boy Peeling Fruit (italian: Ragazzo che monda un frutto); Caravaggio. The work represents a young boy intent on peeling an unidentified fruit, he seems to be sitting and has both elbows on the table."),
 
